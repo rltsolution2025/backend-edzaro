@@ -1,6 +1,8 @@
 import React from 'react';
+import { useState } from 'react';
 import { Container, Row, Col, Card, Button, Form } from 'react-bootstrap';
 import { motion } from 'framer-motion';
+import { ChevronDown, ChevronUp } from "lucide-react"; 
 import ComparisonTable from '../components/ComparisonTable';
 
 const Home = () => {
@@ -31,7 +33,34 @@ const Home = () => {
     },
   ];
 
+ const [openIndex, setOpenIndex] = useState(null);
 
+  const sections = [
+    {
+      title: "Access Skilled Fresh Talent",
+      content: "Ramp up your workforce with ready-to-deploy talent. We source, train, and provide highly skilled candidates that can integrate seamlessly into your teams."
+    },
+    {
+      title: "Build an Exceptional Talent Pool",
+      content: "Create a pipeline of talented professionals who are equipped with the right skills to meet your company's future growth demands."
+    },
+    {
+      title: "Enhance Workforce Learning Options",
+      content: "Empower employees with continuous learning through workshops, upskilling programs, and hands-on training."
+    },
+    {
+      title: "Create High-Performance Teams",
+      content: "Leverage specialized training to build collaborative, productive, and goal-oriented teams."
+    },
+    {
+      title: "Accelerate Employee Growth and Expertise",
+      content: "Provide career progression pathways and mentorship opportunities to boost employee retention and performance."
+    }
+  ];
+
+  const toggleSection = (index) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
 
   return (
     <div>
@@ -259,6 +288,8 @@ const Home = () => {
             </p>
           </Col>
 
+
+
           {/* Right Column - Image */}
           <Col md={6} className="text-center">
             <img
@@ -297,7 +328,48 @@ const Home = () => {
         }
       `}</style>
     </section>
+     <div className="flex flex-col md:flex-row items-center justify-between max-w-6xl mx-auto p-8 bg-white shadow-lg rounded-2xl">
+      
+      {/* Left Side Image */}
+      <div className="md:w-1/2 w-full flex justify-center">
+        <img
+          src="/your-image.png" // Replace with actual image path
+          alt="Corporate Team"
+          className="rounded-2xl shadow-md max-h-[400px] object-cover"
+        />
+      </div>
 
+      {/* Right Side Content */}
+      <div className="md:w-1/2 w-full mt-6 md:mt-0 md:pl-12">
+        <h2 className="text-3xl font-bold text-purple-700 mb-6">
+          TalentSprint’s Customized L&D Solutions for Corporates
+        </h2>
+
+        <div className="space-y-4">
+          {sections.map((section, index) => (
+            <div
+              key={index}
+              className="border-b pb-3 cursor-pointer"
+              onClick={() => toggleSection(index)}
+            >
+              <div className="flex justify-between items-center">
+                <h3 className="text-xl font-semibold">{section.title}</h3>
+                {openIndex === index ? (
+                  <ChevronUp className="text-purple-700" />
+                ) : (
+                  <ChevronDown className="text-purple-700" />
+                )}
+              </div>
+
+              {/* Expandable Content */}
+              {openIndex === index && (
+                <p className="mt-2 text-gray-600">{section.content}</p>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
       {/* Testimonials */}
       <section className="py-5">
         <Container>
