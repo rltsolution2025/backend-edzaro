@@ -235,6 +235,69 @@ const Home = () => {
         </Container>
       </motion.section>
 
+       <section className="hybrid-section py-5">
+      <Container>
+        <Row className="align-items-center">
+          {/* Left Column - Text */}
+          <Col md={6} className="text-white mb-4 mb-md-0">
+            <h2 className="fw-bold">Hi-Tech Hi-Touch Hybrid Learning Platform</h2>
+            <p>
+              <a href="#" className="fw-bold text-white text-decoration-underline">
+                iPearl.ai
+              </a>{" "}
+              (AI-Powered Interactive Platform for Experiential And Remote Learning),
+              TalentSprint’s Digital Delivery Platform, truly open by design, is built
+              on Open edX and has been architected to incorporate best-of-breed
+              technologies and state-of-the-art components.
+            </p>
+            <p>
+              The hallmark of the platform is its seamless integration of diverse but
+              related learning technologies that facilitates synchronous learning,
+              asynchronous learning, assignments, assessments, group work, cloud labs,
+              and video indexing, with just one single sign-on. This maximizes user
+              delight, for both students and instructors.
+            </p>
+          </Col>
+
+          {/* Right Column - Image */}
+          <Col md={6} className="text-center">
+            <img
+              src="/assets/E-Learn.png"
+              alt="Hybrid Learning"
+              className="img-fluid rounded shadow-lg"
+            />
+          </Col>
+        </Row>
+      </Container>
+
+      {/* Styling */}
+      <style>{`
+        .hybrid-section {
+          background: linear-gradient(90deg, #4b0082, #800080);
+          color: #fff;
+        }
+
+        .hybrid-section h2 {
+          font-size: 1.8rem;
+          margin-bottom: 20px;
+        }
+
+        .hybrid-section p {
+          font-size: 1rem;
+          line-height: 1.6;
+        }
+
+        .hybrid-section img {
+          max-width: 90%;
+          transition: transform 0.3s ease;
+        }
+
+        .hybrid-section img:hover {
+          transform: scale(1.05);
+        }
+      `}</style>
+    </section>
+
       {/* Testimonials */}
       <section className="py-5">
         <Container>
