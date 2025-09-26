@@ -121,9 +121,9 @@ const Home = () => {
     <Col lg={6}>
       <div className="p-4 bg-white rounded shadow-sm">
         <Form>
-          <Form.Group className="mb-3">
-            <Form.Control type="text" placeholder="Program interested" />
-          </Form.Group>
+          {/* <Form.Group className="mb-3"> */}
+            {/* <Form.Control type="text" placeholder="Program interested" />
+          </Form.Group> */}
           <Form.Group className="mb-3">
             <Form.Control type="text" placeholder="Name" />
           </Form.Group>
@@ -328,48 +328,52 @@ const Home = () => {
         }
       `}</style>
     </section>
-     <div className="flex flex-col md:flex-row items-center justify-between max-w-6xl mx-auto p-8 bg-white shadow-lg rounded-2xl">
-      
-      {/* Left Side Image */}
-      <div className="md:w-1/2 w-full flex justify-center">
-        <img
-          src="/your-image.png" // Replace with actual image path
-          alt="Corporate Team"
-          className="rounded-2xl shadow-md max-h-[400px] object-cover"
-        />
-      </div>
 
-      {/* Right Side Content */}
-      <div className="md:w-1/2 w-full mt-6 md:mt-0 md:pl-12">
-        <h2 className="text-3xl font-bold text-purple-700 mb-6">
-          TalentSprint’s Customized L&D Solutions for Corporates
-        </h2>
+<div className="d-flex w-full max-w-screen-xl mx-auto  p-8 bg-white shadow-lg rounded-2xl gap-10">
+  {/* LEFT SIDE CONTENT - 75% of the screen */}
+  <div className="w-3/4 p-5">
+    <h3 className="text-2xl md:text-3xl font-semibold text-purple-700 mb-6">
+      Customized L&D Solutions for Corporates
+    </h3>
 
-        <div className="space-y-4">
-          {sections.map((section, index) => (
-            <div
-              key={index}
-              className="border-b pb-3 cursor-pointer"
-              onClick={() => toggleSection(index)}
-            >
-              <div className="flex justify-between items-center">
-                <h3 className="text-xl font-semibold">{section.title}</h3>
-                {openIndex === index ? (
-                  <ChevronUp className="text-purple-700" />
-                ) : (
-                  <ChevronDown className="text-purple-700" />
-                )}
-              </div>
+    <div className="space-y-4">
+      {sections.map((section, index) => (
+        <div
+          key={index}
+          className="border-b pb-2 cursor-pointer"
+          onClick={() => toggleSection(index)}
+        >
+          <div className="flex justify-between items-center">
+            <h5 className="text-lg md:text-xl font-medium">{section.title}</h5>
+            {openIndex === index ? (
+              <ChevronUp className="text-purple-700 w-5 h-5" />
+            ) : (
+              <ChevronDown className="text-purple-700 w-5 h-5" />
+            )}
+          </div>
 
-              {/* Expandable Content */}
-              {openIndex === index && (
-                <p className="mt-2 text-gray-600">{section.content}</p>
-              )}
-            </div>
-          ))}
+          {openIndex === index && (
+            <p className="mt-1 text-gray-600 text-sm md:text-base">{section.content}</p>
+          )}
         </div>
-      </div>
+      ))}
     </div>
+  </div>
+
+  {/* RIGHT SIDE IMAGE - 25% of the screen */}
+  <div className="w-1/4 flex justify-center">
+    <img
+      src="/assets/corporate.png"
+      alt="Corporate Team"
+      className="rounded-2xl shadow-md w-64 h-48 object-cover"
+    />
+  </div>
+</div>
+
+
+
+
+
       {/* Testimonials */}
       <section className="py-5">
         <Container>
