@@ -408,8 +408,8 @@ const Home = () => {
             </Col>
           </Row>
         </Container>
-        <ComparisonTable />
       </section>
+       <ComparisonTable />
     </div>
   );
 };

@@ -29,8 +29,8 @@ const ReferFriend = () => {
             >
               <div className="card-body">
                 <i className="bi bi-gift display-4 text-primary mb-3"></i>
-                <h5>$50 Credit for You</h5>
-                <p>Get $50 off your next course when your friend enrolls</p>
+                <h5>Rs. 20000 Credit for You</h5>
+                <p>Get 20000 off your next course when your friend enrolls</p>
               </div>
             </motion.div>
           </Col>
@@ -41,8 +41,8 @@ const ReferFriend = () => {
             >
               <div className="card-body">
                 <i className="bi bi-currency-dollar display-4 text-success mb-3"></i>
-                <h5>$100 Off for Friend</h5>
-                <p>Your friend gets $100 off their first course enrollment</p>
+                <h5>Rs.10000 Off for Friend</h5>
+                <p>Your friend gets 10000 off their first course enrollment</p>
               </div>
             </motion.div>
           </Col>

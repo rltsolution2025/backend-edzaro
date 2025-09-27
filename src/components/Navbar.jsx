@@ -15,30 +15,29 @@ const Navbar = () => {
           <Nav className="ms-auto">
 
             {/* Courses Link */}
-            <Nav.Link as={Link} to="/courses" className="mx-2 text-black">
+            {/* <Nav.Link as={Link} to="/courses" className="mx-2 text-black">
               <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.2 }}>
                 Courses
               </motion.div>
-            </Nav.Link>
+            </Nav.Link> */}
 
             {/* Inside the Program Dropdown */}
-            <NavDropdown
-              title={
-                <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.2 }} className="text-black">
-                  Program
-                </motion.div>
-              }
-              id="inside-program-dropdown"
-              className="mx-2 text-black"
-            >
-              <NavDropdown.Item as={Link} to="/inside-program/ai-developer ">
-                AI Developer
-              </NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/inside-program/cloud-developer">
-                Cloud Developer
-              </NavDropdown.Item>
-            </NavDropdown>
-
+<NavDropdown
+  title={
+    <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.2 }} className="text-black">
+      Program
+    </motion.div>
+  }
+  id="inside-program-dropdown"
+  className="mx-2 text-black"
+>
+  <NavDropdown.Item as={Link} to="/inside-program/ai-developer">
+    AI Developer
+  </NavDropdown.Item>
+  <NavDropdown.Item as={Link} to="/inside-program/cloud-developer">
+    Cloud Developer
+  </NavDropdown.Item>
+</NavDropdown>
             {/* Other Links */} 
             <Nav.Link as={Link} to="/refer-friend" className="mx-2 text-black">
               <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.2 }}>

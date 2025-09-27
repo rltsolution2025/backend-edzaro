@@ -1,6 +1,6 @@
-import React from 'react';
-import { Container, Row, Col, Card, Button, ListGroup } from 'react-bootstrap';
-import { motion } from 'framer-motion';
+import React from "react";
+import { Container, Row, Col, Card, Button, ListGroup } from "react-bootstrap";
+import { motion } from "framer-motion";
 
 const Career = () => {
   return (
@@ -8,145 +8,115 @@ const Career = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="py-5"
+      className="py-5 bg-light"
     >
       <Container>
+        {/* Intro Section */}
         <Row className="mb-5">
           <Col md={10} className="mx-auto text-center">
-            <h1 className="mb-4">Career Services</h1>
-            <p className="lead">
-              We don't just teach you to code - we prepare you for a successful career in tech. 
-              Our comprehensive career support helps 92% of graduates land jobs within 6 months.
+            <h1 className="fw-bold display-5 text-dark mb-3">
+              Career Services
+            </h1>
+            <p className="lead text-muted fs-5">
+              Gain the skills, credentials, and hands-on experience to launch a
+              successful career as a <strong>Cloud Application Developer</strong>.
+              With <strong>labs, certification vouchers, and two capstone
+              projects</strong>, you’ll graduate ready for real-world roles.
             </p>
           </Col>
         </Row>
 
-        {/* Career Support Services */}
-        <Row className="mb-5">
-          <Col md={4} className="mb-4">
-            <motion.div
-              whileHover={{ y: -5 }}
-              className="card h-100 shadow border-0"
-            >
-              <Card.Img variant="top" src="https://via.placeholder.com/400x250/28a745/ffffff?text=Resume+Building" alt="Professional resume template with modern design and tech skills section" />
-              <Card.Body>
-                <Card.Title>Resume & Portfolio Building</Card.Title>
-                <Card.Text>
-                  <ul className="list-unstyled">
-                    <li>✓ Tech-specific resume templates</li>
-                    <li>✓ GitHub portfolio optimization</li>
-                    <li>✓ Personal website development</li>
-                    <li>✓ LinkedIn profile enhancement</li>
-                  </ul>
-                </Card.Text>
-              </Card.Body>
-            </motion.div>
-          </Col>
-
-          <Col md={4} className="mb-4">
-            <motion.div
-              whileHover={{ y: -5 }}
-              className="card h-100 shadow border-0"
-            >
-              <Card.Img variant="top" src="https://via.placeholder.com/400x250/007bff/ffffff?text=Interview+Prep" alt="Mock interview session with career coach and candidate" />
-              <Card.Body>
-                <Card.Title>Interview Preparation</Card.Title>
-                <Card.Text>
-                  <ul className="list-unstyled">
-                    <li>✓ Technical interview practice</li>
-                    <li>✓ Behavioral question coaching</li>
-                    <li>✓ Mock interviews with feedback</li>
-                    <li>✓ Coding challenge strategies</li>
-                  </ul>
-                </Card.Text>
-              </Card.Body>
-            </motion.div>
-          </Col>
-
-          <Col md={4} className="mb-4">
-            <motion.div
-              whileHover={{ y: -5 }}
-              className="card h-100 shadow border-0"
-            >
-              <Card.Img variant="top" src="https://via.placeholder.com/400x250/fd7e14/ffffff?text=Job+Placement" alt="Network of tech companies and job opportunities visualization" />
-              <Card.Body>
-                <Card.Title>Job Placement Support</Card.Title>
-                <Card.Text>
-                  <ul className="list-unstyled">
-                    <li>✓ Direct employer connections</li>
-                    <li>✓ Exclusive job board access</li>
-                    <li>✓ Career fair participation</li>
-                    <li>✓ Salary negotiation guidance</li>
-                  </ul>
-                </Card.Text>
-              </Card.Body>
-            </motion.div>
-          </Col>
+        {/* Career Support Cards */}
+        <Row className="g-4 mb-5">
+          {[
+            {
+              title: "AWS Certifications",
+              img: "https://via.placeholder.com/400x250/28a745/ffffff?text=AWS+Certifications",
+              points: [
+                "Cloud Practitioner",
+                "AI Practitioner",
+                "Developer – Associate",
+                "Exam prep & vouchers included",
+              ],
+            },
+            {
+              title: "Capstone Projects",
+              img: "https://via.placeholder.com/400x250/007bff/ffffff?text=Capstone+Projects",
+              points: [
+                "Customer Onboarding App",
+                "Appointment Scheduler App",
+                "Serverless AWS Integration",
+                "End-to-end real-world solutions",
+              ],
+            },
+            {
+              title: "Job Readiness",
+              img: "https://via.placeholder.com/400x250/fd7e14/ffffff?text=Job+Readiness",
+              points: [
+                "Cloud & DevOps skills employers need",
+                "Hands-on AWS labs",
+                "Portfolio of real projects",
+                "Career-focused learning path",
+              ],
+            },
+          ].map((item, i) => (
+            <Col md={4} key={i}>
+              <motion.div
+                whileHover={{ scale: 1.03, y: -5 }}
+                className="h-100"
+              >
+                <Card className="shadow-sm h-100 border-0 rounded-3 overflow-hidden">
+                  <Card.Img
+                    variant="top"
+                    src={item.img}
+                    className="object-fit-cover"
+                    style={{ height: "220px" }}
+                  />
+                  <Card.Body className="p-4">
+                    <Card.Title className="fw-bold fs-4 mb-3">
+                      {item.title}
+                    </Card.Title>
+                    <ul className="list-unstyled text-muted small mb-0">
+                      {item.points.map((point, idx) => (
+                        <li key={idx}>✓ {point}</li>
+                      ))}
+                    </ul>
+                  </Card.Body>
+                </Card>
+              </motion.div>
+            </Col>
+          ))}
         </Row>
 
-        {/* Success Statistics */}
+        {/* Success Stats */}
         <Row className="mb-5">
-          <Col md={12}>
-            <Card className="bg-light border-0">
-              <Card.Body className="text-center py-5">
-                <h3 className="mb-4">Our Career Success Metrics</h3>
-                <Row>
-                  <Col md={3} className="mb-3">
-                    <motion.div
-                      initial={{ scale: 0 }}
-                      whileInView={{ scale: 1 }}
-                      transition={{ duration: 0.5 }}
-                      className="stat-circle bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-2"
-                      style={{width: '100px', height: '100px'}}
-                    >
-                      <div>
-                        <div className="h4 mb-0">92%</div>
-                        <small>Job Placement</small>
-                      </div>
-                    </motion.div>
-                  </Col>
-                  <Col md={3} className="mb-3">
-                    <motion.div
-                      initial={{ scale: 0 }}
-                      whileInView={{ scale: 1 }}
-                      transition={{ duration: 0.5, delay: 0.1 }}
-                      className="stat-circle bg-success text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-2"
-                      style={{width: '100px', height: '100px'}}
-                    >
-                      <div>
-                        <div className="h4 mb-0">$85K</div>
-                        <small>Average Salary</small>
-                      </div>
-                    </motion.div>
-                  </Col>
-                  <Col md={3} className="mb-3">
-                    <motion.div
-                      initial={{ scale: 0 }}
-                      whileInView={{ scale: 1 }}
-                      transition={{ duration: 0.5, delay: 0.2 }}
-                      className="stat-circle bg-info text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-2"
-                      style={{width: '100px', height: '100px'}}
-                    >
-                      <div>
-                        <div className="h4 mb-0">120+</div>
-                        <small>Partner Companies</small>
-                      </div>
-                    </motion.div>
-                  </Col>
-                  <Col md={3} className="mb-3">
-                    <motion.div
-                      initial={{ scale: 0 }}
-                      whileInView={{ scale: 1 }}
-                      transition={{ duration: 0.5, delay: 0.3 }}
-                      className="stat-circle bg-warning text-dark rounded-circle d-inline-flex align-items-center justify-content-center mb-2"
-                      style={{width: '100px', height: '100px'}}
-                    >
-                      <div>
-                        <div className="h4 mb-0">6 mos</div>
-                        <small>Avg. Hire Time</small>
-                      </div>
-                    </motion.div>
-                  </Col>
+          <Col>
+            <Card className="border-0 shadow-sm bg-white rounded-3">
+              <Card.Body className="py-5 text-center">
+                <h3 className="fw-bold mb-5">
+                  Career Outcomes with AWS Cloud Institute
+                </h3>
+                <Row className="g-4">
+                  {[
+                    { label: "Career Track", value: "9 Courses", color: "primary" },
+                    { label: "Capstone Projects", value: "2", color: "success" },
+                    { label: "AWS Certifications", value: "3+", color: "info" },
+                    { label: "Career Launch", value: "1 Year", color: "warning" },
+                  ].map((stat, i) => (
+                    <Col md={3} key={i}>
+                      <motion.div
+                        initial={{ scale: 0 }}
+                        whileInView={{ scale: 1 }}
+                        transition={{ duration: 0.5, delay: i * 0.1 }}
+                        className={`bg-${stat.color} text-$
+                          {stat.color === "warning" ? "dark" : "white"} rounded-circle d-flex flex-column align-items-center justify-content-center shadow`}
+                        style={{ width: "120px", height: "120px", margin: "0 auto" }}
+                      >
+                        <span className="fw-bold fs-5">{stat.value}</span>
+                        <small>{stat.label}</small>
+                      </motion.div>
+                    </Col>
+                  ))}
                 </Row>
               </Card.Body>
             </Card>
@@ -156,24 +126,25 @@ const Career = () => {
         {/* Career Timeline */}
         <Row>
           <Col md={8} className="mx-auto">
-            <h3 className="text-center mb-4">Your Career Journey with Edzaro</h3>
-            <ListGroup variant="flush">
-              <ListGroup.Item className="d-flex justify-content-between align-items-center">
-                <span>Week 1-4: Skills Assessment</span>
-                <Button size="sm" variant="outline-primary">Details</Button>
-              </ListGroup.Item>
-              <ListGroup.Item className="d-flex justify-content-between align-items-center">
-                <span>Week 5-8: Resume Building</span>
-                <Button size="sm" variant="outline-primary">Details</Button>
-              </ListGroup.Item>
-              <ListGroup.Item className="d-flex justify-content-between align-items-center">
-                <span>Week 9-12: Interview Prep</span>
-                <Button size="sm" variant="outline-primary">Details</Button>
-              </ListGroup.Item>
-              <ListGroup.Item className="d-flex justify-content-between align-items-center">
-                <span>Graduation: Job Matching</span>
-                <Button size="sm" variant="outline-primary">Details</Button>
-              </ListGroup.Item>
+            <h3 className="fw-bold text-center mb-4">
+              Your Career Journey with AWS Cloud Institute
+            </h3>
+            <ListGroup variant="flush" className="shadow-sm rounded-3">
+              {["Quarter 1: Foundations (AWS, Python, DevOps Basics)",
+                "Quarter 2: AI, Microservices, Capstone 1",
+                "Quarter 3: Advanced Cloud, Capstone 2",
+                "Graduation: Certifications & Job-Readiness",
+              ].map((item, idx) => (
+                <ListGroup.Item
+                  key={idx}
+                  className="d-flex justify-content-between align-items-center py-3 px-4"
+                >
+                  <span className="fw-medium text-muted">{item}</span>
+                  <Button size="sm" variant="outline-primary" className="rounded-pill px-3">
+                    Details
+                  </Button>
+                </ListGroup.Item>
+              ))}
             </ListGroup>
           </Col>
         </Row>
