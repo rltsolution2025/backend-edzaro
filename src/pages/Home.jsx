@@ -87,156 +87,220 @@ const Home = () => {
         </Container>
       </motion.section> */}
 
-     <Container className="py-5">
-  <Row className="align-items-center">
-    
-    {/* Left Content Section */}
-    <Col lg={6} className="mb-4 mb-lg-0">
-      <h1 className="fw-bold">
-        Learn Like You Would <br /> At India’s Top Tech Companies.
-      </h1>
-      <p className="text-muted fs-5">
-        Work-experience based learning programs to land your dream tech job
-      </p>
-      <p className="fs-6">
-        <strong>Build</strong> professional projects like the top 1% tech professionals.<br />
-        <strong>Master</strong> the latest Fullstack/Backend/Automation tech with real work-ex.<br />
-        <strong>Crack</strong> your dream role at the best tech companies.
-      </p>
-      <Button variant="success" className="mt-3">
-        Upskill with Edzaro
-      </Button>
+    <div className="custom-blue-section py-5">
+  <Container>
+    <Row className="align-items-center">
       
-      {/* Example stats row */}
-      <Row className="mt-4 text-center">
-        <Col><h5>88%</h5><p>Completion Rate</p></Col>
-        <Col><h5>10 LPA</h5><p>Avg Salary</p></Col>
-        <Col><h5>21 LPA</h5><p>Highest Salary</p></Col>
-        <Col><h5>1000+</h5><p>Students</p></Col>
-        <Col><h5>77%</h5><p>Placement Rate</p></Col>
-      </Row>
-    </Col>
-    
-    {/* Right Form Section */}
-    <Col lg={6}>
-      <div className="p-4 bg-white rounded shadow-sm">
-        <Form>
-          {/* <Form.Group className="mb-3"> */}
-            {/* <Form.Control type="text" placeholder="Program interested" />
-          </Form.Group> */}
-          <Form.Group className="mb-3">
-            <Form.Control type="text" placeholder="Name" />
-          </Form.Group>
-          <Form.Group className="mb-3">
-            <Form.Control type="email" placeholder="Email" />
-          </Form.Group>
-          <Form.Group className="mb-3">
-            <Form.Control type="tel" placeholder="Phone +91" />
-          </Form.Group>
-          <Form.Group className="mb-3 form-check">
-            <Form.Check type="checkbox" label="I agree to receive SMS & WhatsApp communications on this number." />
-          </Form.Group>
-          <Button variant="warning" className="w-100">
-            Book Your Trial
-          </Button>
-        </Form>
-      </div>
-    </Col>
-  </Row>
-</Container>
+      {/* Left Content Section */}
+      <Col lg={6} className="mb-4 mb-lg-0 text-dark">
+        <h1 className="fw-bold">
+          Learn Like You Would <br /> At India’s Top Tech Companies.
+        </h1>
+        <p className="text-muted fs-5">
+          Work-experience based learning programs to land your dream tech job
+        </p>
+        <p className="fs-6">
+          <strong>Build</strong> professional projects like the top 1% tech professionals.<br />
+          <strong>Master</strong> the latest Fullstack/Backend/Automation tech with real work-ex.<br />
+          <strong>Crack</strong> your dream role at the best tech companies.
+        </p>
+        <Button variant="success" className="mt-3">
+          Upskill with Edzaro
+        </Button>
 
-
-
-
-      {/* Courses Overview */}
-       <motion.section
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      transition={{ duration: 0.6 }}
-      className="py-5"
-    >
-      <Container>
-        <h2 className="text-center mb-5">
-          Our Software Development Courses
-        </h2>
-        <Row>
-          {courses.map((course, index) => (
-            <Col
-              key={index}
-              xs={12}
-              sm={6}
-              md={4}
-              lg={3}
-              className="mb-4 d-flex"
-            >
-              <div className="course-card shadow-sm">
-                <Card className="border-0 h-100">
-                  <Card.Img
-                    variant="top"
-                    src={course.img}
-                    alt={course.title}
-                    className="img-fluid"
-                  />
-                  <div className="overlay d-flex justify-content-center align-items-center">
-                    <div className="overlay-content">
-                      <h5>{course.title}</h5>
-                      <Button variant="light" size="sm">
-                        View Details
-                      </Button>
-                    </div>
-                  </div>
-                </Card>
-              </div>
-            </Col>
-          ))}
+        {/* Example stats row */}
+        <Row className="mt-4 text-center">
+          <Col><h5>88%</h5><p>Completion Rate</p></Col>
+          <Col><h5>10 LPA</h5><p>Avg Salary</p></Col>
+          <Col><h5>21 LPA</h5><p>Highest Salary</p></Col>
+          <Col><h5>1000+</h5><p>Students</p></Col>
+          <Col><h5>77%</h5><p>Placement Rate</p></Col>
         </Row>
-      </Container>
+      </Col>
 
-      {/* CSS for hover overlay */}
-      <style>{`
-        .course-card {
-          position: relative;
-          overflow: hidden;
-          border-radius: 8px;
-          transition: transform 0.3s ease;
-        }
+      {/* Right Form Section */}
+      <Col lg={6}>
+        <div className="p-4 bg-white rounded shadow">
+          <Form>
+            <Form.Group className="mb-3">
+              <Form.Control type="text" placeholder="Name" />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Control type="email" placeholder="Email" />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Control type="tel" placeholder="Phone +91" />
+            </Form.Group>
+            <Form.Group className="mb-3 form-check">
+              <Form.Check
+                type="checkbox"
+                label="I agree to receive SMS & WhatsApp communications on this number."
+              />
+            </Form.Group>
+            <Button variant="warning" className="w-100">
+              Book Your Trial
+            </Button>
+          </Form>
+        </div>
+      </Col>
+    </Row>
+  </Container>
+</div>
 
-        .course-card:hover {
-          transform: translateY(-6px);
-        }
 
-        .course-card img {
-          display: block;
-          width: 100%;
-          height: auto;
-          border-radius: 8px;
-        }
 
-        .overlay {
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          background: rgba(0,0,0,0.6);
-          color: #fff;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          flex-direction: column;
-          opacity: 0;
-          transition: opacity 0.4s ease;
-        }
 
-        .course-card:hover .overlay {
-          opacity: 1;
-        }
 
-        .overlay-content h5 {
-          margin-bottom: 10px;
-        }
-      `}</style>
-    </motion.section>
+ <motion.section
+  initial={{ opacity: 0 }}
+  whileInView={{ opacity: 1 }}
+  transition={{ duration: 0.6 }}
+  className="py-5"
+>
+  <Container>
+    <h2 className="text-center mb-5">
+      Our Software Development Courses
+    </h2>
+    <Row>
+      {courses.map((course, index) => (
+        <Col
+          key={index}
+          xs={12}
+          sm={6}
+          md={4}
+          lg={3}
+          className="mb-4 d-flex"
+        >
+          <Card className="course-card border-0 shadow-sm position-relative">
+            {/* Image Section (30% height) */}
+            <div className="course-img-wrapper">
+              <Card.Img
+                variant="top"
+                src={course.img}
+                alt={course.title}
+                className="course-img"
+              />
+            </div>
+
+            {/* Bottom Content Section */}
+            <Card.Body className="d-flex flex-column justify-content-between text-center course-content">
+              <h5 className="mb-3">{course.title}</h5>
+              <p className="text-muted">
+                {course.description || "Short description about this course goes here."}
+              </p>
+              <Button variant="primary" size="sm" className="mt-auto">
+                View Details
+              </Button>
+            </Card.Body>
+
+            {/* Full Hover Overlay (covers full card) */}
+            <div className="full-overlay d-flex flex-column justify-content-center align-items-center text-center">
+              <h5 className="text-white mb-2">{course.title}</h5>
+              <p className="text-light small mb-3">
+                {course.description || "Short description about this course goes here."}
+              </p>
+              <Button variant="light" size="sm" className="mb-2">
+                Enroll Now
+              </Button>
+            </div>
+          </Card>
+        </Col>
+      ))}
+    </Row>
+  </Container>
+
+  {/* CSS */}
+  <style>{`
+    .course-card {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+      transition: transform 0.3s ease;
+    }
+
+    .course-card:hover {
+      transform: translateY(-6px);
+    }
+
+    /* Image takes 30% of card height */
+    .course-img-wrapper {
+      flex: 0 0 30%;
+      min-height: 100px;
+      max-height: 160px;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .course-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transition: transform 0.3s ease;
+    }
+
+    .course-card:hover .course-img {
+      transform: scale(1.05);
+    }
+
+    /* Bottom Content always visible */
+    .course-content {
+      flex: 1;
+      padding: 1rem;
+      background-color: #e6f2ff;
+      text-align: center;
+      z-index: 1;
+      position: relative;
+      transition: opacity 0.25s ease;
+    }
+
+    /* Overlay hidden by default */
+    .full-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.85);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem;
+      z-index: 3;
+      transform: translateY(100%);
+      opacity: 0;
+      visibility: hidden;
+      transition: transform 0.35s ease, opacity 0.35s ease, visibility 0.35s;
+      pointer-events: none;
+    }
+
+    /* Show overlay on hover (covers full card) */
+    .course-card:hover .full-overlay {
+      transform: translateY(0);
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    /* Fade bottom content slightly when overlay is active */
+    .course-card:hover .course-content {
+      opacity: 0.15;
+    }
+  `}</style>
+</motion.section>
+
+
+
+
+
+
+
+
+
 
       {/* Inside the Program Section */}
       <motion.section

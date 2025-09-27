@@ -63,11 +63,16 @@ const Navbar = () => {
               </motion.div>
             </Nav.Link>
 
-            <Nav.Link as={Link} to="/about-us" className="mx-2 text-black bg-">
-              <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.2 }} className="bg-blue-1000  px-3 py-1 rounded">
-                About Us
-              </motion.div>
-            </Nav.Link>
+            <Nav.Link as={Link} to="/about-us" className="mx-2">
+  <motion.div
+    whileHover={{ scale: 1.05 }}
+    transition={{ duration: 0.2 }}
+    className="bg-primary text-white px-3 py-1 rounded"
+  >
+    About Us
+  </motion.div>
+</Nav.Link>
+
           </Nav>
         </BSNavbar.Collapse>
       </Container>
