@@ -5,78 +5,75 @@ import { motion } from "framer-motion";
 
 const Navbar = () => {
   return (
-    <BSNavbar bg="light" variant="light" expand="lg" className="shadow-sm">
-      <Container>
-        <BSNavbar.Brand as={Link} to="/">
-           RLT Edzaro 
-        </BSNavbar.Brand>
-        <BSNavbar.Toggle aria-controls="basic-navbar-nav" />
-        <BSNavbar.Collapse id="basic-navbar-nav">
-          <Nav className="ms-auto">
-
-            {/* Courses Link */}
-            {/* <Nav.Link as={Link} to="/courses" className="mx-2 text-black">
-              <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.2 }}>
-                Courses
-              </motion.div>
-            </Nav.Link> */}
-
-            {/* Inside the Program Dropdown */}
-<NavDropdown
-  title={
-    <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.2 }} className="text-black">
-      Program
-    </motion.div>
-  }
-  id="inside-program-dropdown"
-  className="mx-2 text-black"
+<BSNavbar
+  expand="lg"
+  className="theme-navbar shadow-sm"
 >
-  <NavDropdown.Item as={Link} to="/inside-program/ai-developer">
-    AI Developer
-  </NavDropdown.Item>
-  <NavDropdown.Item as={Link} to="/inside-program/cloud-developer">
-    Cloud Developer
-  </NavDropdown.Item>
-</NavDropdown>
-            {/* Other Links */} 
-            <Nav.Link as={Link} to="/refer-friend" className="mx-2 text-black">
-              <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.2 }}>
-                Refer a Friend
-              </motion.div>
-            </Nav.Link>
+  <Container>
+    {/* Brand */}
+    <BSNavbar.Brand as={Link} to="/" className="fw-bold text-dark">
+      RLT Edzaro
+    </BSNavbar.Brand>
 
-            <Nav.Link as={Link} to="/career" className="mx-2 text-black">
-              <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.2 }}>
-                Career
-              </motion.div>
-            </Nav.Link>
+    <BSNavbar.Toggle aria-controls="basic-navbar-nav" />
+    <BSNavbar.Collapse id="basic-navbar-nav">
+      <Nav className="ms-auto align-items-center">
 
-            <Nav.Link as={Link} to="/hire-edzaro" className="mx-2 text-black">
-              <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.2 }}>
-                Hire from Edzaro
-              </motion.div>
-            </Nav.Link>
+        {/* Program Dropdown */}
+        <NavDropdown
+          title={
+            <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.2 }} className="text-dark">
+              Program
+            </motion.div>
+          }
+          id="inside-program-dropdown"
+          className="mx-2 text-dark"
+        >
+          <NavDropdown.Item as={Link} to="/inside-program/ai-developer">
+            AI Developer
+          </NavDropdown.Item>
+          <NavDropdown.Item as={Link} to="/inside-program/cloud-developer">
+            Cloud Developer
+          </NavDropdown.Item>
+        </NavDropdown>
 
-            <Nav.Link as={Link} to="/platform" className="mx-2 text-black">
-              <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.2 }}>
-                Platform
-              </motion.div>
-            </Nav.Link>
+        {/* Other Links */}
+        {[
+          { to: "/refer-friend", label: "Refer a Friend" },
+          { to: "/career", label: "Career" },
+          { to: "/hire-edzaro", label: "Hire from Edzaro" },
+          { to: "/platform", label: "Platform" },
+        ].map((link, i) => (
+          <Nav.Link as={Link} to={link.to} key={i} className="mx-2 text-dark">
+            <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.2 }}>
+              {link.label}
+            </motion.div>
+          </Nav.Link>
+        ))}
 
-            <Nav.Link as={Link} to="/about-us" className="mx-2">
-  <motion.div
-    whileHover={{ scale: 1.05 }}
-    transition={{ duration: 0.2 }}
-    className="bg-primary text-white px-3 py-1 rounded"
-  >
-    About Us
-  </motion.div>
-</Nav.Link>
+        {/* Highlighted About Us */}
+        <Nav.Link as={Link} to="/about-us" className="mx-2">
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            transition={{ duration: 0.2 }}
+            className="bg-primary text-white px-3 py-1 rounded"
+          >
+            About Us
+          </motion.div>
+        </Nav.Link>
+      </Nav>
+    </BSNavbar.Collapse>
+  </Container>
 
-          </Nav>
-        </BSNavbar.Collapse>
-      </Container>
-    </BSNavbar>
+  {/* CSS */}
+  <style>{`
+    .theme-navbar {
+      background-color: #ffffffff; /* matching your theme */
+    }
+  `}</style>
+</BSNavbar>
+
+
   );
 };
 

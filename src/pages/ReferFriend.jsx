@@ -97,37 +97,54 @@ const ReferFriend = () => {
                 </Card.Header>
                 <Card.Body>
                   <Form>
-                    <Form.Group className="mb-3">
-                      <Form.Label>Your Unique Referral Link</Form.Label>
-                      <div className="input-group">
-                        <Form.Control
-                          type="text"
-                          value="https://edzaro.com/ref/your-unique-code"
-                          readOnly
-                        />
-                        <Button variant="outline-secondary">Copy Link</Button>
-                      </div>
-                      <Form.Text className="text-muted">
-                        Share this link with your friends via email, social media, or messaging apps
-                      </Form.Text>
-                    </Form.Group>
+  {/* Your Unique Referral Link */}
+  {/* <Form.Group className="mb-3">
+    <Form.Label>Your Unique Referral Link</Form.Label>
+    <div className="input-group">
+      <Form.Control
+        type="text"
+        value="https://edzaro.com/ref/your-unique-code"
+        readOnly
+      />
+      <Button variant="outline-secondary">Copy Link</Button>
+    </div>
+    <Form.Text className="text-muted">
+      Share this link with your friends via email, social media, or messaging apps
+    </Form.Text>
+  </Form.Group> */}
 
-                    <Form.Group className="mb-3">
-                      <Form.Label>Or Send Referral via Email</Form.Label>
-                      <Row>
-                        <Col md={6}>
-                          <Form.Control type="email" placeholder="Friend's Email" />
-                        </Col>
-                        <Col md={6}>
-                          <Form.Control type="text" placeholder="Your Name" />
-                        </Col>
-                      </Row>
-                    </Form.Group>
+  {/* Referee Details */}
+  <Form.Group className="mb-3">
+    <Form.Label>Referee Details</Form.Label>
+    <Row className="mb-2">
+      <Col md={6} className="mb-2">
+        <Form.Control type="text" placeholder="Referee's Name" />
+      </Col>
+      <Col md={6}>
+        <Form.Control type="email" placeholder="Referee's Email" />
+      </Col>
+    </Row>
+    <Form.Control type="text" placeholder="Referee's Phone" className="mb-2" />
+    <Form.Select aria-label="Program Interested" className="mb-2">
+      <option value="">Select Program Interested</option>
+      <option value="aws-cloud">AWS Cloud Program</option>
+      <option value="devops">DevOps Program</option>
+      <option value="ai-program">AI Program</option>
+      <option value="fullstack">Fullstack Development</option>
+    </Form.Select>
+  </Form.Group>
 
-                    <Button variant="primary" className="w-100">
-                      Send Referral Invitation
-                    </Button>
-                  </Form>
+  {/* Referred By */}
+  <Form.Group className="mb-3">
+    <Form.Label>Referred By</Form.Label>
+    <Form.Control type="text" placeholder="Your Name" />
+  </Form.Group>
+
+  <Button variant="primary" className="w-100">
+    Send Referral Invitation
+  </Button>
+</Form>
+
                 </Card.Body>
               </Card>
             </motion.div>

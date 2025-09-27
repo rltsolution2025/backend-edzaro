@@ -119,36 +119,76 @@ const Home = () => {
       </Col>
 
       {/* Right Form Section */}
-      <Col lg={6}>
-        <div className="p-4 bg-white rounded shadow">
-          <Form>
-            <Form.Group className="mb-3">
-              <Form.Control type="text" placeholder="Name" />
-            </Form.Group>
-            <Form.Group className="mb-3">
-              <Form.Control type="email" placeholder="Email" />
-            </Form.Group>
-            <Form.Group className="mb-3">
-              <Form.Control type="tel" placeholder="Phone +91" />
-            </Form.Group>
-            <Form.Group className="mb-3 form-check">
-              <Form.Check
-                type="checkbox"
-                label="I agree to receive SMS & WhatsApp communications on this number."
-              />
-            </Form.Group>
-            <Button variant="warning" className="w-100">
-              Book Your Trial
-            </Button>
-          </Form>
-        </div>
-      </Col>
+     <Col lg={6}>
+  <div className="p-5 bg-white rounded-3xl shadow-lg">
+    <Form className="flex flex-col gap-4">
+      {/* Name */}
+      <Form.Group>
+        <Form.Control
+          type="text"
+          placeholder="Full Name"
+          className="py-3 rounded-xl border-gray-300 focus:ring-2 focus:ring-yellow-400"
+        />
+      </Form.Group>
+
+      {/* Email */}
+      <Form.Group>
+        <Form.Control
+          type="email"
+          placeholder="Email Address"
+          className="py-3 rounded-xl border-gray-300 focus:ring-2 focus:ring-yellow-400"
+        />
+      </Form.Group>
+
+      {/* Phone */}
+      <Form.Group>
+        <Form.Control
+          type="tel"
+          placeholder="Phone (+91)"
+          className="py-3 rounded-xl border-gray-300 focus:ring-2 focus:ring-yellow-400"
+        />
+      </Form.Group>
+
+      {/* Checkbox */}
+      <Form.Group className="form-check">
+        <Form.Check
+          type="checkbox"
+          label="I agree to receive SMS & WhatsApp communications on this number."
+          className="text-muted"
+        />
+      </Form.Group>
+
+      {/* CTA Button */}
+      <Button
+        variant="warning"
+        className="w-100 rounded-xl fw-bold py-3 shadow-sm hover:shadow-md transition"
+      >
+        Book Your Trial
+      </Button>
+    </Form>
+  </div>
+
+  {/* Extra Styling */}
+  <style>{`
+    .rounded-3xl {
+      border-radius: 1.5rem !important; /* Extra rounded corners */
+    }
+    .gap-4 > *:not(:last-child) {
+      margin-bottom: 1rem !important; /* Adds gap between inputs */
+    }
+    .transition {
+      transition: all 0.3s ease-in-out;
+    }
+    .hover\\:shadow-md:hover {
+      box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.1);
+    }
+  `}</style>
+</Col>
+
+
     </Row>
   </Container>
 </div>
-
-
-
 
 
  <motion.section
@@ -295,13 +335,6 @@ const Home = () => {
 
 
 
-
-
-
-
-
-
-
       {/* Inside the Program Section */}
       <motion.section
         initial={{ opacity: 0 }}
@@ -333,7 +366,7 @@ const Home = () => {
         <Row className="align-items-center">
           {/* Left Column - Text */}
           <Col md={6} className="text-white mb-4 mb-md-0">
-            <h2 className="fw-bold">Hi-Tech Hi-Touch Hybrid Learning Platform</h2>
+            <h2 className="fw-bold">iPearl.Ai Hybird Learning Platform</h2>
             <p>
               <a href="#" className="fw-bold text-white text-decoration-underline">
                 iPearl.ai

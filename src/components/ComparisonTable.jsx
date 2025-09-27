@@ -40,13 +40,19 @@ const ComparisonTable = () => {
   ];
 
   return (
-   <div className="p-6 my-5">
-  <table className="w-full border  border-separate rounded-lg overflow-hidden shadow-md mx-auto">
+<div className="p-6 my-5">
+  <table className="w-full border-collapse rounded-xl overflow-hidden shadow-lg mx-auto">
     <thead>
-      <tr>
-        <th className="p-3 border border-blue-500 bg-blue-500 text-black">Features</th>
-        <th className="p-3 border border-blue-500 bg-blue-500 text-black">Other Institute</th>
-        <th className="p-3 border border-blue-500 bg-blue-500 text-black">RLT Edzaro</th>
+      <tr style={{ backgroundColor: "#e6f2ff" }}>
+        <th className="p-3 text-black text-left border border-gray-300">
+          Features
+        </th>
+        <th className="p-3 text-black text-center border border-gray-300">
+          Other Institute
+        </th>
+        <th className="p-3 text-black text-center border border-gray-300">
+          RLT Edzaro
+        </th>
       </tr>
     </thead>
 
@@ -56,11 +62,13 @@ const ComparisonTable = () => {
           key={idx}
           className={`${idx % 2 === 0 ? "bg-gray-50" : "bg-white"} hover:bg-gray-100`}
         >
-          <td className="p-3 font-medium border border-blue-500">{row.feature}</td>
-          <td className="text-center p-3 border border-blue-500">
+          <td className="p-3 font-medium border border-gray-300 text-black">
+            {row.feature}
+          </td>
+          <td className="text-center p-3 border border-gray-300 text-black">
             {row.other ? "✔️" : "❌"}
           </td>
-          <td className="text-center p-3 bg-yellow-50 border border-blue-500">
+          <td className="text-center p-3 bg-yellow-50 border border-gray-300 text-black">
             {row.ours ? "✔️" : "❌"}
           </td>
         </tr>
@@ -68,6 +76,8 @@ const ComparisonTable = () => {
     </tbody>
   </table>
 </div>
+
+
 
   );
 };
