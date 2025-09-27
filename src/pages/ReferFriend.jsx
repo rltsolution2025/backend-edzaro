@@ -1,6 +1,6 @@
-import React from 'react';
-import { Container, Row, Col, Card, Button, Form } from 'react-bootstrap';
-import { motion } from 'framer-motion';
+import React from "react";
+import { Container, Row, Col, Card, Button, Form } from "react-bootstrap";
+import { motion } from "framer-motion";
 
 const ReferFriend = () => {
   return (
@@ -8,140 +8,261 @@ const ReferFriend = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="py-5"
+      className="py-5 refer-bg"
     >
       <Container>
+        {/* Heading */}
         <Row className="mb-5">
           <Col md={8} className="mx-auto text-center">
-            <h1 className="mb-4">Refer a Friend</h1>
-            <p className="lead">
-              Share the Edzaro experience with your friends and earn rewards! Both you and your friend will receive special benefits.
-            </p>
+            <motion.h1
+              className="mb-4"
+              initial={{ y: -20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.6 }}
+            >
+              Refer a Friend
+            </motion.h1>
+            <motion.p
+              className="lead"
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              Share the Edzaro experience with your friends and earn rewards! Both you and
+              your friend will receive special benefits.
+            </motion.p>
           </Col>
         </Row>
 
         {/* Benefits Section */}
         <Row className="mb-5">
-          <Col md={4} className="mb-4">
-            <motion.div
-              whileHover={{ y: -5 }}
-              className="card h-100 text-center shadow border-0"
-            >
-              <div className="card-body">
-                <i className="bi bi-gift display-4 text-primary mb-3"></i>
-                <h5>Rs. 20000 Credit for You</h5>
-                <p>Get 20000 off your next course when your friend enrolls</p>
-              </div>
-            </motion.div>
-          </Col>
-          <Col md={4} className="mb-4">
-            <motion.div
-              whileHover={{ y: -5 }}
-              className="card h-100 text-center shadow border-0"
-            >
-              <div className="card-body">
-                <i className="bi bi-currency-dollar display-4 text-success mb-3"></i>
-                <h5>Rs.10000 Off for Friend</h5>
-                <p>Your friend gets 10000 off their first course enrollment</p>
-              </div>
-            </motion.div>
-          </Col>
-          <Col md={4} className="mb-4">
-            <motion.div
-              whileHover={{ y: -5 }}
-              className="card h-100 text-center shadow border-0"
-            >
-              <div className="card-body">
-                <i className="bi bi-award display-4 text-warning mb-3"></i>
-                <h5>Extra Rewards</h5>
-                <p>Refer 3+ friends and get exclusive mentorship sessions</p>
-              </div>
-            </motion.div>
-          </Col>
+          {[
+            {
+              icon: "https://cdn-icons-png.flaticon.com/512/4202/4202842.png",
+              title: "Rs. 20000 Credit for You",
+              text: "Get 20000 off your next course when your friend enrolls",
+              color: "primary",
+            },
+            {
+              icon: "https://cdn-icons-png.flaticon.com/512/1170/1170576.png",
+              title: "Rs.10000 Off for Friend",
+              text: "Your friend gets 10000 off their first course enrollment",
+              color: "success",
+            },
+            {
+              icon: "https://cdn-icons-png.flaticon.com/512/1828/1828884.png",
+              title: "Extra Rewards",
+              text: "Refer 3+ friends and get exclusive mentorship sessions",
+              color: "warning",
+            },
+          ].map((item, i) => (
+            <Col md={4} className="mb-4" key={i}>
+              <motion.div
+                whileHover={{ y: -8, scale: 1.03 }}
+                className="card h-100 text-center shadow border-0"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: i * 0.2 }}
+              >
+                <div className="card-body">
+                  <motion.img
+                    src={item.icon}
+                    alt={item.title}
+                    className="mb-3"
+                    width={70}
+                    height={70}
+                    initial={{ scale: 0 }}
+                    whileInView={{ scale: 1 }}
+                    transition={{ duration: 0.5 }}
+                  />
+                  <h5>{item.title}</h5>
+                  <p>{item.text}</p>
+                </div>
+              </motion.div>
+            </Col>
+          ))}
         </Row>
 
         {/* Referral Form */}
         <Row className="mb-5">
           <Col md={8} className="mx-auto">
-            <Card className="shadow">
-              <Card.Header className="bg-primary text-white">
-                <h4 className="mb-0">Share Your Referral Link</h4>
-              </Card.Header>
-              <Card.Body>
-                <Form>
-                  <Form.Group className="mb-3">
-                    <Form.Label>Your Unique Referral Link</Form.Label>
-                    <div className="input-group">
-                      <Form.Control
-                        type="text"
-                        value="https://edzaro.com/ref/your-unique-code"
-                        readOnly
-                      />
-                      <Button variant="outline-secondary">Copy Link</Button>
-                    </div>
-                    <Form.Text className="text-muted">
-                      Share this link with your friends via email, social media, or messaging apps
-                    </Form.Text>
-                  </Form.Group>
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              whileInView={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.6 }}
+            >
+              <Card className="shadow-lg">
+                <Card.Header className="bg-primary text-white">
+                  <h4 className="mb-0">Share Your Referral Link</h4>
+                </Card.Header>
+                <Card.Body>
+                  <Form>
+                    <Form.Group className="mb-3">
+                      <Form.Label>Your Unique Referral Link</Form.Label>
+                      <div className="input-group">
+                        <Form.Control
+                          type="text"
+                          value="https://edzaro.com/ref/your-unique-code"
+                          readOnly
+                        />
+                        <Button variant="outline-secondary">Copy Link</Button>
+                      </div>
+                      <Form.Text className="text-muted">
+                        Share this link with your friends via email, social media, or messaging apps
+                      </Form.Text>
+                    </Form.Group>
 
-                  <Form.Group className="mb-3">
-                    <Form.Label>Or Send Referral via Email</Form.Label>
-                    <Row>
-                      <Col md={6}>
-                        <Form.Control type="email" placeholder="Friend's Email" />
-                      </Col>
-                      <Col md={6}>
-                        <Form.Control type="text" placeholder="Your Name" />
-                      </Col>
-                    </Row>
-                  </Form.Group>
+                    <Form.Group className="mb-3">
+                      <Form.Label>Or Send Referral via Email</Form.Label>
+                      <Row>
+                        <Col md={6}>
+                          <Form.Control type="email" placeholder="Friend's Email" />
+                        </Col>
+                        <Col md={6}>
+                          <Form.Control type="text" placeholder="Your Name" />
+                        </Col>
+                      </Row>
+                    </Form.Group>
 
-                  <Button variant="primary" className="w-100">
-                    Send Referral Invitation
-                  </Button>
-                </Form>
-              </Card.Body>
-            </Card>
+                    <Button variant="primary" className="w-100">
+                      Send Referral Invitation
+                    </Button>
+                  </Form>
+                </Card.Body>
+              </Card>
+            </motion.div>
           </Col>
         </Row>
 
         {/* How it Works */}
-        <Row>
-          <Col md={12}>
-            <h3 className="text-center mb-4">How It Works</h3>
-            <Row>
-              <Col md={3} className="text-center mb-3">
-                <div className="step-number bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-2" style={{width: '50px', height: '50px'}}>
-                  1
-                </div>
-                <h6>Share Your Link</h6>
-                <small>Send your unique referral link to friends</small>
-              </Col>
-              <Col md={3} className="text-center mb-3">
-                <div className="step-number bg-success text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-2" style={{width: '50px', height: '50px'}}>
-                  2
-                </div>
-                <h6>Friend Enrolls</h6>
-                <small>They use your link to sign up for a course</small>
-              </Col>
-              <Col md={3} className="text-center mb-3">
-                <div className="step-number bg-info text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-2" style={{width: '50px', height: '50px'}}>
-                  3
-                </div>
-                <h6>Complete Payment</h6>
-                <small>Your friend completes their course payment</small>
-              </Col>
-              <Col md={3} className="text-center mb-3">
-                <div className="step-number bg-warning text-dark rounded-circle d-inline-flex align-items-center justify-content-center mb-2" style={{width: '50px', height: '50px'}}>
-                  4
-                </div>
-                <h6>Get Rewarded</h6>
-                <small>You both receive your discounts automatically</small>
-              </Col>
-            </Row>
-          </Col>
-        </Row>
+       <Row className="how-it-works position-relative">
+  <Col md={12}>
+    <h3 className="text-center mb-4">How It Works</h3>
+    <div className="steps-container d-flex justify-content-between align-items-center position-relative">
+      {[ 
+        { step: "1", title: "Share Your Link", text: "Send your unique referral link to friends", color: "primary" },
+        { step: "2", title: "Friend Enrolls", text: "They use your link to sign up for a course", color: "success" },
+        { step: "3", title: "Complete Payment", text: "Your friend completes their course payment", color: "info" },
+        { step: "4", title: "Get Rewarded", text: "You both receive your discounts automatically", color: "warning" },
+      ].map((item, i) => (
+        <div key={i} className="step-wrapper position-relative text-center flex-fill">
+          {/* Step Circle */}
+          <motion.div
+            initial={{ scale: 0 }}
+            whileInView={{ scale: 1 }}
+            transition={{ duration: 0.5, delay: i * 0.3 }}
+            className={`step-number bg-${item.color} ${item.color === "warning" ? "text-dark" : "text-white"} rounded-circle d-inline-flex align-items-center justify-content-center mb-2`}
+            style={{ width: "55px", height: "55px", fontWeight: "bold", zIndex: 2 }}
+          >
+            {item.step}
+          </motion.div>
+
+          <h6>{item.title}</h6>
+          <small>{item.text}</small>
+
+          {/* Connecting Line */}
+          {i < 3 && (
+            <motion.div
+              className={`connector-line`}
+              initial={{ width: 0 }}
+              whileInView={{ width: "100%" }}
+              transition={{ duration: 1, delay: 0.5 + i * 0.3 }}
+            />
+          )}
+        </div>
+      ))}
+    </div>
+  </Col>
+
+  <style>{`
+    .steps-container {
+      position: relative;
+      margin-top: 40px;
+    }
+
+    .step-wrapper {
+      position: relative;
+    }
+
+    .connector-line {
+      position: absolute;
+      top: 50%;
+      left: 50%; /* start from edge of circle */
+      height: 4px;
+      background-color: #007bff;
+      z-index: 1;
+      transform: translateY(-50%);
+    }
+
+    /* Make line stretch to next circle */
+    .step-wrapper .connector-line {
+      width: calc(100% - 55px); /* 55px = circle diameter */
+    }
+  `}</style>
+</Row>
+
+
       </Container>
+
+      {/* Background Animation */}
+      <div className="animated-bg">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+      {/* CSS */}
+      <style>{`
+        .refer-bg {
+          background: #e6f2ff;
+          position: relative;
+          overflow: hidden;
+        }
+
+        /* floating animated circles */
+        .animated-bg span {
+          position: absolute;
+          border-radius: 50%;
+          background: rgba(0, 123, 255, 0.15);
+          animation: float 8s linear infinite;
+        }
+
+        .animated-bg span:nth-child(1) {
+          width: 120px;
+          height: 120px;
+          left: 10%;
+          bottom: -120px;
+          animation-delay: 0s;
+        }
+        .animated-bg span:nth-child(2) {
+          width: 180px;
+          height: 180px;
+          left: 40%;
+          bottom: -180px;
+          animation-delay: 2s;
+        }
+        .animated-bg span:nth-child(3) {
+          width: 90px;
+          height: 90px;
+          right: 15%;
+          bottom: -90px;
+          animation-delay: 4s;
+        }
+        .animated-bg span:nth-child(4) {
+          width: 150px;
+          height: 150px;
+          right: 35%;
+          bottom: -150px;
+          animation-delay: 6s;
+        }
+
+        @keyframes float {
+          0% { transform: translateY(0) scale(1); opacity: 0.6; }
+          50% { transform: translateY(-400px) scale(1.1); opacity: 0.8; }
+          100% { transform: translateY(-800px) scale(1); opacity: 0; }
+        }
+      `}</style>
     </motion.div>
   );
 };

@@ -8,7 +8,7 @@ const Navbar = () => {
     <BSNavbar bg="light" variant="light" expand="lg" className="shadow-sm">
       <Container>
         <BSNavbar.Brand as={Link} to="/">
-          <i className="bi bi-code-slash me-2"></i>Edzaro Training
+           RLT Edzaro 
         </BSNavbar.Brand>
         <BSNavbar.Toggle aria-controls="basic-navbar-nav" />
         <BSNavbar.Collapse id="basic-navbar-nav">
