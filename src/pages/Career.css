@@ -1,0 +1,88 @@
+/* Gradient Background */
+.career-section {
+  background: linear-gradient(135deg, #b53dc0, #2575fc);
+  color: #fff;
+  overflow: hidden;
+  position: relative;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+/* Floating background shapes */
+.career-shape {
+  border-radius: 50%;
+  position: absolute;
+  animation: float 8s ease-in-out infinite alternate;
+}
+
+.career-shape.shape-1 {
+  width: 150px;
+  height: 150px;
+  background-color: rgba(255, 255, 255, 0.1);
+  top: 10%;
+  left: 5%;
+}
+
+.career-shape.shape-2 {
+  width: 250px;
+  height: 250px;
+  background-color: rgba(255, 255, 255, 0.08);
+  bottom: 10%;
+  right: 10%;
+}
+
+/* Floating bubbles over image */
+.floating-bubble {
+  position: absolute;
+  animation: bubbleFloat 6s ease-in-out infinite alternate;
+}
+
+.floating-bubble.bubble-1 {
+  top: -20px;
+  left: 10px;
+}
+
+.floating-bubble.bubble-2 {
+  bottom: 10px;
+  right: 20px;
+}
+
+.floating-bubble.bubble-3 {
+  top: 50%;
+  left: 80%;
+}
+
+/* Image styling */
+.career-illustration img {
+  max-height: 320px;
+  border-radius: 1rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3);
+}
+
+/* Career benefits list */
+.career-benefits li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.8rem;
+  font-size: 1rem;
+}
+
+/* Animations */
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes bubbleFloat {
+  0% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-12px) rotate(10deg); }
+  100% { transform: translateY(0) rotate(0deg); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 991px) {
+  .floating-bubble {
+    transform: scale(0.8);
+  }
+}

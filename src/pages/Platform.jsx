@@ -2,150 +2,101 @@ import React from 'react';
 import { Container, Row, Col, Card, ListGroup } from 'react-bootstrap';
 import { motion } from 'framer-motion';
 import { Button} from 'react-bootstrap';
-
+import './Platform.css'; // Import custom CSS for additional styling
 
 
 const Platform = () => {
   return (
-    <motion.div
+<motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="py-5"
     >
-      <Container>
-        <Row className="mb-5">
-          <Col md={10} className="mx-auto text-center">
-            <h1 className="mb-4">Our Learning Platform</h1>
-            <p className="lead">
-              Experience learning redefined with our cutting-edge platform designed specifically for 
-              software development education. Access courses anytime, anywhere, with features built for success.
-            </p>
-          </Col>
-        </Row>
 
-        {/* Platform Features */}
-        <Row className="mb-5">
-          <Col md={4} className="mb-4">
-            <motion.div
-              whileHover={{ y: -5 }}
-              className="card h-100 text-center border-0 shadow"
-            >
-              <Card.Body>
-                <i className="bi bi-play-circle display-4 text-primary mb-3"></i>
-                <h5>Live & Recorded Classes</h5>
-                <p>Attend live sessions or watch recordings at your own pace with full HD video quality</p>
-              </Card.Body>
-            </motion.div>
-          </Col>
-          <Col md={4} className="mb-4">
-            <motion.div
-              whileHover={{ y: -5 }}
-              className="card h-100 text-center border-0 shadow"
-            >
-              <Card.Body>
-                <i className="bi bi-code-square display-4 text-success mb-3"></i>
-                <h5>Integrated Code Editor</h5>
-                <p>Write, run, and debug code directly in the browser with our built-in IDE</p>
-              </Card.Body>
-            </motion.div>
-          </Col>
-          <Col md={4} className="mb-4">
-            <motion.div
-              whileHover={{ y: -5 }}
-              className="card h-100 text-center border-0 shadow"
-            >
-              <Card.Body>
-                <i className="bi bi-chat-dots display-4 text-info mb-3"></i>
-                <h5>Real-time Collaboration</h5>
-                <p>Pair programming, group projects, and instant messaging with peers and mentors</p>
-              </Card.Body>
-            </motion.div>
-          </Col>
-          <Col md={4} className="mb-4">
-            <motion.div
-              whileHover={{ y: -5 }}
-              className="card h-100 text-center border-0 shadow"
-            >
-              <Card.Body>
-                <i className="bi bi-clipboard-check display-4 text-warning mb-3"></i>
-                <h5>Progress Tracking</h5>
-                <p>Visual dashboards showing your learning progress, completion rates, and skill growth</p>
-              </Card.Body>
-            </motion.div>
-          </Col>
-          <Col md={4} className="mb-4">
-            <motion.div
-              whileHover={{ y: -5 }}
-              className="card h-100 text-center border-0 shadow"
-            >
-              <Card.Body>
-                <i className="bi bi-cloud-arrow-down display-4 text-danger mb-3"></i>
-                <h5>Offline Access</h5>
-                <p>Download lessons and code exercises for learning without internet connection</p>
-              </Card.Body>
-            </motion.div>
-          </Col>
-          <Col md={4} className="mb-4">
-            <motion.div
-              whileHover={{ y: -5 }}
-              className="card h-100 text-center border-0 shadow"
-            >
-              <Card.Body>
-                <i className="bi bi-phone display-4 text-secondary mb-3"></i>
-                <h5>Mobile App</h5>
-                <p>Learn on the go with our dedicated iOS and Android mobile applications</p>
-              </Card.Body>
-            </motion.div>
-          </Col>
-        </Row>
+      {/* ================= HERO SECTION ================= */}
+      <section className="hero-section animated-bg">
+        <div className="hero-shape"></div>
 
-        {/* Platform Demo */}
-        <Row className="mb-5">
-          <Col md={8} className="mx-auto">
-            <Card className="bg-dark text-white">
-              <Card.Body className="text-center py-5">
-                <h3 className="mb-4">Experience Our Platform</h3>
-                <p className="mb-4">Take a tour of our learning management system with interactive demo</p>
+        <div className="container hero-content">
+          <div className="row align-items-center">
+            {/* Left Text */}
+            <div className="col-md-6 mb-4 mb-md-0 text-white">
+              <h1 className="fw-bold display-5">
+                Hi-Tech Hi-Touch Hybrid <br /> Learning Platform of Choice
+              </h1>
+              <p className="lead mt-3">
+                Learning never stops. Build expertise 24x7.
+              </p>
+            </div>
+
+            {/* Right Illustration */}
+            <div className="col-md-6 d-flex justify-content-md-end justify-content-center">
+              <div className="laptop-box">
+                <div className="laptop-header">
+                  <span style={{ background: "#ff5f57" }}></span>
+                  <span style={{ background: "#febc2e" }}></span>
+                  <span style={{ background: "#28c940" }}></span>
+                </div>
+
+                <div className="laptop-body">
+                  <div className="laptop-block big"></div>
+                  <div className="laptop-block small"></div>
+                  <div className="laptop-block small"></div>
+                  <div className="laptop-block big"></div>
+                </div>
+
+                <div className="code-popup">
+                  &lt;div&gt;<br />
+                  &nbsp;&nbsp;Hello World<br />
+                  &lt;/div&gt;
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ================= FEATURE SECTION ================= */}
+      <section className="features-section animated-bg-secondary py-5">
+        <Container>
+          <Row className="mb-5">
+            <Col md={10} className="mx-auto text-center text-black">
+              <h1 className="mb-4">Our Learning Platform</h1>
+              <p className="lead">
+                Experience learning redefined with our cutting-edge platform designed specifically for 
+                software development education. Access courses anytime, anywhere, with features built for success.
+              </p>
+            </Col>
+          </Row>
+
+          {/* Platform Features */}
+          <Row>
+            {[
+              { icon: "bi-play-circle", title: "Live & Recorded Classes", text: "Attend live sessions or watch recordings at your own pace with full HD video quality", color: "primary" },
+              { icon: "bi-code-square", title: "Integrated Code Editor", text: "Write, run, and debug code directly in the browser with our built-in IDE", color: "success" },
+              { icon: "bi-chat-dots", title: "Real-time Collaboration", text: "Pair programming, group projects, and instant messaging with peers and mentors", color: "info" },
+              { icon: "bi-clipboard-check", title: "Progress Tracking", text: "Visual dashboards showing your learning progress, completion rates, and skill growth", color: "warning" },
+              { icon: "bi-cloud-arrow-down", title: "Offline Access", text: "Download lessons and code exercises for learning without internet connection", color: "danger" },
+              { icon: "bi-phone", title: "Mobile App", text: "Learn on the go with our dedicated iOS and Android mobile applications", color: "secondary" },
+            ].map((feature, index) => (
+              <Col md={4} className="mb-4" key={index}>
                 <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  className="demo-placeholder bg-secondary rounded d-flex align-items-center justify-content-center mb-3"
-                  style={{height: '300px'}}
+                  whileHover={{ y: -5 }}
+                  className="card h-100 text-center border-0 shadow feature-card"
                 >
-                  <i className="bi bi-play-btn display-1 text-light"></i>
+                  <Card.Body>
+                    <i className={`bi ${feature.icon} display-4 text-${feature.color} mb-3`}></i>
+                    <h5>{feature.title}</h5>
+                    <p>{feature.text}</p>
+                  </Card.Body>
                 </motion.div>
-                <Button variant="light" size="lg">Start Platform Demo</Button>
-              </Card.Body>
-            </Card>
-          </Col>
-        </Row>
-
-        {/* Technical Requirements */}
-        <Row>
-          <Col md={8} className="mx-auto">
-            <h3 className="text-center mb-4">Technical Requirements</h3>
-            <ListGroup variant="flush">
-              <ListGroup.Item className="d-flex justify-content-between align-items-center">
-                <span>Supported Browsers</span>
-                <small className="text-muted">Chrome, Firefox, Safari, Edge (latest versions)</small>
-              </ListGroup.Item>
-              <ListGroup.Item className="d-flex justify-content-between align-items-center">
-                <span>Internet Speed</span>
-                <small className="text-muted">Minimum 5 Mbps for HD video</small>
-              </ListGroup.Item>
-              <ListGroup.Item className="d-flex justify-content-between align-items-center">
-                <span>Device Support</span>
-                <small className="text-muted">Desktop, laptop, tablet, smartphone</small>
-              </ListGroup.Item>
-              <ListGroup.Item className="d-flex justify-content-between align-items-center">
-                <span>Storage</span>
-                <small className="text-muted">2GB+ recommended for offline content</small>
-              </ListGroup.Item>
-            </ListGroup>
-          </Col>
-        </Row>
-      </Container>
+              </Col>
+            ))}
+          </Row>
+        </Container>
+      </section>
     </motion.div>
+
   );
 };
 

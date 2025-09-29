@@ -1,15 +1,15 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { Container, Row, Col, Card } from "react-bootstrap";
+import { Container, Row, Col, Card, Badge } from "react-bootstrap";
 import { motion } from "framer-motion";
+import './InsideProgram.css';
 
 const programData = {
   "cloud-developer": {
     title: "Cloud Application Developer Track",
-    image:
-      "https://via.placeholder.com/500x350/4e73df/ffffff?text=Cloud+Developer+Program",
-    overview:
-      "A 9-course track designed to prepare you for a career as a cloud developer in less than one year...",
+    image: "/assets/Cloud.png",
+    overview: "A 9-course track designed to prepare you for a career as a cloud developer in less than one year...",
+    salary: "5 LPA – 15 LPA",
     quarters: [
       {
         title: "Quarter 1",
@@ -45,10 +45,9 @@ const programData = {
   },
   "ai-developer": {
     title: "AI Application Developer Track",
-    image:
-      "https://via.placeholder.com/500x350/fd7e14/ffffff?text=AI+Developer+Program",
-    overview:
-      "A program designed to make you an AI-powered app developer, integrating AWS AI services into real-world solutions...",
+    image: "/assets/AI.png",
+    overview: "A program designed to make you an AI-powered app developer, integrating AWS AI services into real-world solutions...",
+    salary: "5 LPA – 15 LPA",
     quarters: [
       {
         title: "Quarter 1",
@@ -92,27 +91,63 @@ const InsideProgram = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="py-5"
+      className="inside-program-page"
     >
-      <Container>
-        <h1 className="text-center mb-5">{program.title}</h1>
+      {/* Hero Section */}
+      <section className="program-hero-section position-relative text-white py-5">
+        <div className="hero-bg-shape shape-1"></div>
+        <div className="hero-bg-shape shape-2"></div>
+        <div className="hero-bg-shape shape-3"></div>
 
-        {/* Program Overview */}
-        <Row className="mb-5">
+        <Container className="text-center position-relative z-2">
+          <motion.h1
+            initial={{ y: -30, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.7 }}
+            className="display-4 fw-bold mb-3"
+          >
+            {program.title}
+          </motion.h1>
+          <motion.p
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.7, delay: 0.3 }}
+            className="lead"
+          >
+            {program.overview}
+          </motion.p>
+
+          {/* Salary Highlight */}
+          <motion.div
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 0.7, delay: 0.5 }}
+            className="salary-highlight mt-4"
+          >
+            <Badge bg="warning" text="dark" className="p-3 fs-5 fw-bold shadow">
+              Potential Salary: {program.salary}
+            </Badge>
+          </motion.div>
+        </Container>
+      </section>
+
+      {/* Program Overview */}
+      <Container className="py-5">
+        <Row className="align-items-center mb-5">
           <Col md={6}>
             <motion.img
               src={program.image}
               alt={program.title}
-              className="img-fluid rounded shadow"
+              className="img-fluid rounded shadow-lg"
               initial={{ x: -50, opacity: 0 }}
               whileInView={{ x: 0, opacity: 1 }}
               transition={{ duration: 0.7 }}
             />
           </Col>
           <Col md={6}>
-            <h3>{program.title}</h3>
+            <h3 className="mb-3">{program.title}</h3>
             <p>{program.overview}</p>
-            <ul>
+            <ul className="list-unstyled">
               <li>Weekly modules with assessments (85% pass required)</li>
               <li>Instructor-led sessions & recordings</li>
               <li>Hands-on AWS lab challenges</li>
@@ -122,12 +157,18 @@ const InsideProgram = () => {
           </Col>
         </Row>
 
-        {/* Quarters Breakdown */}
-        <Row className="mb-5">
-          <Col md={12}>
-            <h3 className="text-center mb-4">Program Breakdown</h3>
-            {program.quarters.map((q, idx) => (
-              <Card className="mb-3 shadow-sm" key={idx}>
+        {/* Program Quarters */}
+        <h3 className="text-center mb-4">Program Breakdown</h3>
+        <Row>
+          {program.quarters.map((q, idx) => (
+            <Col md={4} key={idx}>
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: idx * 0.2 }}
+                className={`mb-4 card shadow-sm border-0`}
+              >
                 <Card.Header className={`bg-${q.color} text-${q.textColor}`}>
                   <h5 className="mb-0">{q.title}</h5>
                 </Card.Header>
@@ -137,10 +178,18 @@ const InsideProgram = () => {
                       <li key={i}>{course}</li>
                     ))}
                   </ul>
+                  <motion.img
+                    src={`https://via.placeholder.com/150x80/${q.color === 'primary' ? '007bff' : q.color === 'success' ? '28a745' : 'ffc107'}/ffffff?text=Course+Image`}
+                    alt="Course Image"
+                    className="img-fluid mt-3 rounded"
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    transition={{ duration: 0.5, delay: 0.4 }}
+                  />
                 </Card.Body>
-              </Card>
-            ))}
-          </Col>
+              </motion.div>
+            </Col>
+          ))}
         </Row>
       </Container>
     </motion.div>

@@ -4,6 +4,8 @@ import { Container, Row, Col, Card, Button, Form } from 'react-bootstrap';
 import { motion } from 'framer-motion';
 import { ChevronDown, ChevronUp } from "lucide-react"; 
 import ComparisonTable from '../components/ComparisonTable';
+import EnrollForm from '../components/EnrollForm';
+import './Home.css';
 
 const Home = () => {
   const courses = [
@@ -64,28 +66,6 @@ const Home = () => {
 
   return (
     <div>
-      {/* Hero Section
-      <motion.section
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="bg-primary text-white py-5"
-        style={{ backgroundImage: 'url(https://via.placeholder.com/1200x600/007bff/ffffff?text=Software+Development+Training)' }}
-      >
-        <Container>
-          <Row className="align-items-center">
-            <Col md={6}>
-              <h1 className="display-4 fw-bold">Master Software Development</h1>
-              <p className="lead">Join Edzaro's comprehensive training programs in web, mobile, and full-stack development. From beginners to pros, build real-world skills with expert mentors.</p>
-              <Button variant="light" size="lg" className="me-2">Enroll Now</Button>
-              <Button variant="outline-light" size="lg">Learn More</Button>
-            </Col>
-            <Col md={6}>
-              <img src="https://via.placeholder.com/500x300/ffffff/007bff?text=Hero+Image" alt="Hero" className="img-fluid rounded shadow" />
-            </Col>
-          </Row>
-        </Container>
-      </motion.section> */}
 
     <div className="custom-blue-section py-5">
   <Container>
@@ -120,54 +100,8 @@ const Home = () => {
 
       {/* Right Form Section */}
      <Col lg={6}>
-  <div className="p-5 bg-white rounded-3xl shadow-lg">
-    <Form className="flex flex-col gap-4">
-      {/* Name */}
-      <Form.Group>
-        <Form.Control
-          type="text"
-          placeholder="Full Name"
-          className="py-3 rounded-xl border-gray-300 focus:ring-2 focus:ring-yellow-400"
-        />
-      </Form.Group>
-
-      {/* Email */}
-      <Form.Group>
-        <Form.Control
-          type="email"
-          placeholder="Email Address"
-          className="py-3 rounded-xl border-gray-300 focus:ring-2 focus:ring-yellow-400"
-        />
-      </Form.Group>
-
-      {/* Phone */}
-      <Form.Group>
-        <Form.Control
-          type="tel"
-          placeholder="Phone (+91)"
-          className="py-3 rounded-xl border-gray-300 focus:ring-2 focus:ring-yellow-400"
-        />
-      </Form.Group>
-
-      {/* Checkbox */}
-      <Form.Group className="form-check">
-        <Form.Check
-          type="checkbox"
-          label="I agree to receive SMS & WhatsApp communications on this number."
-          className="text-muted"
-        />
-      </Form.Group>
-
-      {/* CTA Button */}
-      <Button
-        variant="warning"
-        className="w-100 rounded-xl fw-bold py-3 shadow-sm hover:shadow-md transition"
-      >
-        Book Your Trial
-      </Button>
-    </Form>
-  </div>
-
+       <EnrollForm courseName={courses.title} />
+    
   {/* Extra Styling */}
   <style>{`
     .rounded-3xl {

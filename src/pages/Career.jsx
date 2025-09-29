@@ -2,6 +2,7 @@ import React from "react";
 import { Container, Row, Col, Card, Button, ListGroup } from "react-bootstrap";
 import { motion } from "framer-motion";
 import CareerJourney from "./CareerJourney";
+import './Career.css';
 
 
 const Career = () => {
@@ -69,6 +70,77 @@ const Career = () => {
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6 }}>
       
+ <section className="career-section position-relative py-5">
+      {/* Background floating shapes */}
+      <div className="career-shape shape-1"></div>
+      <div className="career-shape shape-2"></div>
+
+      <div className="container hero-content">
+        <div className="row align-items-center">
+          {/* Left Illustration */}
+          <div className="col-lg-6 mb-4 mb-lg-0 d-flex justify-content-center">
+            <div className="career-illustration position-relative">
+              <div className="floating-bubble bubble-1">
+                <i className="bi bi-briefcase-fill display-6 text-warning"></i>
+              </div>
+              <div className="floating-bubble bubble-2">
+                <i className="bi bi-laptop-fill display-6 text-success"></i>
+              </div>
+              <div className="floating-bubble bubble-3">
+                <i className="bi bi-award-fill display-6 text-danger"></i>
+              </div>
+              <img
+                src="/assets/Career.png"
+                alt="Career Opportunities"
+                className="img-fluid rounded-4 shadow-lg"
+              />
+            </div>
+          </div>
+
+          {/* Right Text */}
+          <div className="col-lg-6 text-white">
+            <h1 className="fw-bold display-5 mb-3">
+              Accelerate Your <span className="brand">Career Growth</span>
+            </h1>
+            <p className="lead mb-4">
+              At <strong>Edzaro</strong>, we provide a structured and professional career development path. 
+              Candidates benefit from high-tech mentorship, advanced lab facilities, resume enhancement, 
+              soft skills training, and mock interviews—ensuring readiness to achieve a competitive CTC of <strong>5–15 LPA</strong>.
+            </p>
+
+            <ul className="list-unstyled career-benefits mb-4">
+              <li>
+                <i className="bi bi-laptop-fill me-2 fs-5 text-warning"></i>
+                High-Tech Mentorship & Lab Facilities
+              </li>
+              <li>
+                <i className="bi bi-file-earmark-text-fill me-2 fs-5 text-info"></i>
+                Resume Building & Profile Enhancement
+              </li>
+              <li>
+                <i className="bi bi-chat-dots-fill me-2 fs-5 text-success"></i>
+                Soft Skills & Communication Training
+              </li>
+              <li>
+                <i className="bi bi-people-fill me-2 fs-5 text-danger"></i>
+                Mock Interviews & Interview Preparation
+              </li>
+              <li>
+                <i className="bi bi-currency-dollar me-2 fs-5 text-warning"></i>
+                Excellent CTC Opportunities: 5–15 LPA
+              </li>
+            </ul>
+
+            <button className="btn btn-light btn-lg fw-semibold text-primary">
+              Explore Careers
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
       {/* INTRO SECTION */}
       <section className="position-relative overflow-hidden py-5" style={{ background: "#e6f2ff" }}>
         {/* Floating blobs */}

@@ -1,6 +1,7 @@
 import React from "react";
 import { Container, Row, Col, Card, Button, Form } from "react-bootstrap";
 import { motion } from "framer-motion";
+import './Refer.css';
 
 const ReferFriend = () => {
   return (
@@ -10,19 +11,65 @@ const ReferFriend = () => {
       transition={{ duration: 0.5 }}
       className="py-5 refer-bg"
     >
+      <section className="refer-section animated-bg-refer py-5">
+  {/* Decorative background shape */}
+  <div className="refer-shape"></div>
+
+  <div className="container hero-content">
+    <div className="row align-items-center">
+      {/* LEFT ILLUSTRATION */}
+      <div className="col-md-6 d-flex justify-content-center mb-4 mb-md-0">
+        <div className="refer-illustration position-relative">
+          <div className="floating-bubble bubble-1">
+            <i className="bi bi-person-plus-fill display-6"></i>
+          </div>
+          <div className="floating-bubble bubble-2">
+            <i className="bi bi-gift-fill display-6"></i>
+          </div>
+          <div className="floating-bubble bubble-3">
+            <i className="bi bi-megaphone-fill display-6"></i>
+          </div>
+          <img
+            src="/assets/Refer&Earn.png"
+            alt="Refer a Friend"
+            className="img-fluid rounded-4 shadow-lg"
+            style={{ maxHeight: '320px' }}
+          />
+        </div>
+      </div>
+
+      {/* RIGHT TEXT */}
+      <div className="col-md-6 text-dark">
+        <h1 className="fw-bold display-5">
+          🎉 Refer Your <span className="brand">Friends</span> & Earn Rewards!
+        </h1>
+        <p className="lead mt-3">
+          Invite your friends to join <strong>Edzaro</strong> and help them kickstart their 
+          learning journey. For every successful referral, you earn exciting rewards 
+          and help build our growing community of learners.
+        </p>
+
+        <button className="btn btn-primary btn-lg mt-3 fw-semibold">
+          Refer Now
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
       <Container>
         {/* Heading */}
         <Row className="mb-5">
           <Col md={8} className="mx-auto text-center">
-            <motion.h1
+            {/* <motion.h1
               className="mb-4"
               initial={{ y: -20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.6 }}
             >
               Refer a Friend
-            </motion.h1>
-            <motion.p
+            </motion.h1> */}
+            {/* <motion.p
               className="lead"
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
@@ -30,7 +77,7 @@ const ReferFriend = () => {
             >
               Share the Edzaro experience with your friends and earn rewards! Both you and
               your friend will receive special benefits.
-            </motion.p>
+            </motion.p> */}
           </Col>
         </Row>
 
@@ -152,7 +199,7 @@ const ReferFriend = () => {
         </Row>
 
         {/* How it Works */}
-       <Row className="how-it-works position-relative">
+       <Row className="how-it-works pb-5 position-relative">
   <Col md={12}>
     <h3 className="text-center mb-4">How It Works</h3>
     <div className="steps-container d-flex justify-content-between align-items-center position-relative">
