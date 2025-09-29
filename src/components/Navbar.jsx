@@ -5,10 +5,7 @@ import { motion } from "framer-motion";
 
 const Navbar = () => {
   return (
-<BSNavbar
-  expand="lg"
-  className="theme-navbar shadow-sm"
->
+<BSNavbar expand="lg" className="theme-navbar shadow-sm">
   <Container>
     {/* Brand */}
     <BSNavbar.Brand as={Link} to="/" className="fw-bold text-dark">
@@ -20,25 +17,33 @@ const Navbar = () => {
       <Nav className="ms-auto align-items-center">
 
         {/* Program Dropdown */}
-        <NavDropdown
-          title={
-            <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.2 }} className="text-dark">
-              Program
-            </motion.div>
-          }
-          id="inside-program-dropdown"
-          className="mx-2 text-dark"
-        >
-          <NavDropdown.Item as={Link} to="/inside-program/ai-developer">
-            AI Developer
-          </NavDropdown.Item>
-          <NavDropdown.Item as={Link} to="/inside-program/cloud-developer">
-            Cloud Developer
-          </NavDropdown.Item>
-        </NavDropdown>
+ <NavDropdown
+  title={
+    <motion.div
+      whileHover={{ scale: 1.05 }}
+      transition={{ duration: 0.2 }}
+      className="d-flex align-items-center text-dark"
+      style={{ gap: '5px' }} // space between text and arrow
+    >
+      Program
+      <span style={{ fontSize: '1.4em' }}>&#9662;</span> {/* ▼ symbol */}
+    </motion.div>
+  }
+  id="inside-program-dropdown"
+  className="mx-2"
+  drop="end"
+  renderMenuOnMount={true}
+ // remove default caret
+>
+  <NavDropdown.Item as={Link} to="/inside-program/ai-developer">
+    AI Developer
+  </NavDropdown.Item>
+  <NavDropdown.Item as={Link} to="/inside-program/cloud-developer">
+    Cloud Developer
+  </NavDropdown.Item>
+</NavDropdown>
 
-        {/* Other Links */}
-        {[
+        {[ 
           { to: "/refer-friend", label: "Refer a Friend" },
           { to: "/career", label: "Career" },
           { to: "/hire-edzaro", label: "Hire from Edzaro" },
@@ -52,29 +57,27 @@ const Navbar = () => {
         ))}
 
         {/* Highlighted About Us */}
-       <Nav.Link as={Link} to="/about-us" className="mx-2">
-  <motion.div
-    whileHover={{ scale: 1.05 }}
-    transition={{ duration: 0.2 }}
-    className="text-white px-4 py-2 rounded-pill fw-semibold"
-    style={{ backgroundColor: '#2e596dff' }} // Customize your color here
-  >
-    About Us
-  </motion.div>
-</Nav.Link>
+        <Nav.Link as={Link} to="/about-us" className="mx-2">
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            transition={{ duration: 0.2 }}
+            className="text-white px-4 py-2 rounded-pill fw-semibold"
+            style={{ backgroundColor: '#2e596dff' }}
+          >
+            About Us
+          </motion.div>
+        </Nav.Link>
 
       </Nav>
     </BSNavbar.Collapse>
   </Container>
 
-  {/* CSS */}
   <style>{`
     .theme-navbar {
-      background-color: #ffffffff; /* matching your theme */
+      background-color: #ffffffff; 
     }
   `}</style>
 </BSNavbar>
-
 
   );
 };
