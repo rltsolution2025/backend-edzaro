@@ -37,18 +37,22 @@ const HireEdzaro = () => {
           {/* RIGHT ILLUSTRATION */}
           <div className="col-md-6 d-flex justify-content-md-end justify-content-center">
             <div className="hiring-illustration">
-              <div className="floating-card card-1">
-                <h5>UI/UX Designer</h5>
-                <p>Help craft beautiful learning experiences.</p>
-              </div>
-              <div className="floating-card card-2">
-                <h5>Full Stack Developer</h5>
-                <p>Build scalable, world-class apps.</p>
-              </div>
-              <div className="floating-card card-3">
-                <h5>Mentors</h5>
-                <p>Inspire the next generation of coders.</p>
-              </div>
+<div className="floating-card card-1">
+  <h5>Cloud Developer</h5>
+  <p>Build scalable cloud apps with AWS.</p>
+</div>
+
+<div className="floating-card card-2">
+  <h5>AI Developer</h5>
+  <p>Create smart AI-powered applications.</p>
+</div>
+
+<div className="floating-card card-3">
+  <h5>AWS Certifications</h5>
+  <p>Earn top AWS certifications fast.</p>
+</div>
+
+
             </div>
           </div>
         </div>

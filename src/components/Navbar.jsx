@@ -52,15 +52,17 @@ const Navbar = () => {
         ))}
 
         {/* Highlighted About Us */}
-        <Nav.Link as={Link} to="/about-us" className="mx-2">
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.2 }}
-            className="bg-primary text-white px-3 py-1 rounded"
-          >
-            About Us
-          </motion.div>
-        </Nav.Link>
+       <Nav.Link as={Link} to="/about-us" className="mx-2">
+  <motion.div
+    whileHover={{ scale: 1.05 }}
+    transition={{ duration: 0.2 }}
+    className="text-white px-4 py-2 rounded-pill fw-semibold"
+    style={{ backgroundColor: '#2e596dff' }} // Customize your color here
+  >
+    About Us
+  </motion.div>
+</Nav.Link>
+
       </Nav>
     </BSNavbar.Collapse>
   </Container>
