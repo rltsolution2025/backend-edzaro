@@ -70,7 +70,7 @@ const Career = () => {
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6 }}>
       
- <section className="career-section position-relative py-5">
+ <section className="career-section position-relative ">
       {/* Background floating shapes */}
       <div className="career-shape shape-1"></div>
       <div className="career-shape shape-2"></div>

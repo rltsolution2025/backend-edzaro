@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { ChevronDown, ChevronUp } from "lucide-react"; 
 import ComparisonTable from '../components/ComparisonTable';
 import EnrollForm from '../components/EnrollForm';
+import { FaHandshake, FaCertificate, FaChalkboardTeacher, FaLaptopCode, FaServer } from "react-icons/fa";
 import './Home.css';
 
 const Home = () => {
@@ -86,7 +87,7 @@ const Home = () => {
   return (
     <div>
 
-    <div className="custom-blue-section py-5">
+    <div className="custom-blue-section ">
   <Container>
     <Row className="align-items-center">
       
@@ -143,7 +144,67 @@ const Home = () => {
     </Row>
   </Container>
 </div>
+  <motion.section
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      transition={{ duration: 0.8 }}
+      className="partnership-section position-relative py-5 text-white"
+    >
+      {/* Animated background icons */}
+      <FaLaptopCode className="bg-icon icon2" />
+      <FaServer className="bg-icon icon3" />
+      <FaHandshake className="bg-icon icon1" />
 
+      <Container style={{ position: "relative", zIndex: 2 }}>
+        <h2 className="text-center mb-5">Our Strategic Partnerships</h2>
+        <Row className="align-items-center">
+          <Col md={6} className="mb-4 mb-md-0">
+            <motion.img
+              src="https://via.placeholder.com/500x300/ffffff/6f42c1?text=Partnerships"
+              alt="Partnerships"
+              className="img-fluid rounded shadow"
+              initial={{ x: -100, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.8 }}
+            />
+          </Col>
+          <Col md={6}>
+            <motion.p
+              initial={{ y: 30, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              Edzaro proudly partners with <strong>TalentSprint</strong>, part of <strong>Accenture</strong>, to deliver cutting-edge technology programs. We are also a recognized partner of the <strong>Tamil Nadu Skill Development Corporation (TNSDC)</strong>, empowering students with industry-relevant skills and career opportunities.
+            </motion.p>
+            <motion.ul
+              initial={{ y: 30, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="list-unstyled"
+            >
+              <li className="mb-2">
+                <FaChalkboardTeacher className="me-2" /> Industry-aligned curriculum
+              </li>
+              <li className="mb-2">
+                <FaHandshake className="me-2" /> Mentorship from top experts
+              </li>
+              <li className="mb-2">
+                <FaCertificate className="me-2" /> Certifications and skill development
+              </li>
+            </motion.ul>
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              whileInView={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+            >
+              {/* <Button variant="light" className="mt-3 text-purple fw-bold">
+                Explore Partnerships
+              </Button> */}
+            </motion.div>
+          </Col>
+        </Row>
+      </Container>
+    </motion.section>
 
  <motion.section
   initial={{ opacity: 0 }}
@@ -287,30 +348,7 @@ const Home = () => {
   `}</style>
 </motion.section>
    {/* Inside the Program Section */}
-      <motion.section
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.6 }}
-        className="bg-light py-5"
-      >
-        <Container>
-          <h2 className="text-center mb-5">Inside the Edzaro Program</h2>
-          <Row>
-            <Col md={6}>
-              <img src="https://via.placeholder.com/500x300/6f42c1/ffffff?text=Classroom+Training" alt="Training" className="img-fluid rounded mb-3" />
-            </Col>
-            <Col md={6}>
-              <p>Our 12-week intensive program includes live coding sessions, real-world projects, mentorship from industry experts, and career placement support. 90% of graduates land jobs in top tech firms.</p>
-              <ul>
-                <li>Weekly assignments and code reviews</li>
-                <li>Access to our online platform for 24/7 learning</li>
-                <li>Certifications in high-demand skills</li>
-              </ul>
-              <Button variant="primary">Join the Program</Button>
-            </Col>
-          </Row>
-        </Container>
-      </motion.section>
+    
 
        <section className="hybrid-section py-5">
       <Container>

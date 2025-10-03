@@ -1,10 +1,11 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import './Footer.css';
 
 const Footer = () => {
   return (
-    <footer className="bg-dark text-light py-5 mt-5">
+    <footer className="custom-footer text-light py-5">
       <Container>
         <Row>
           <Col md={4}>
@@ -33,8 +34,9 @@ const Footer = () => {
               <a href="https://www.linkedin.com/company/rlt-edzaro/" className="text-light me-3"><i className="bi bi-linkedin fs-4"></i></a>
               <a href="https://www.instagram.com/rlt_edzaro" className="text-light"><i className="bi bi-instagram fs-4"></i></a>
             </div>
-            <p className="mt-3 mb-0">&copy; 2023 RLT Edzaro. All rights reserved.</p>
+            
           </Col>
+          <p className="mt-3 mb-0 text-center">&copy; 2023 RLT Edzaro. All rights reserved.</p>
         </Row>
       </Container>
     </footer>

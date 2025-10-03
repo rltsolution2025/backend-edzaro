@@ -94,7 +94,7 @@ const InsideProgram = () => {
       className="inside-program-page"
     >
       {/* Hero Section */}
-      <section className="program-hero-section position-relative text-white py-5">
+      <section className="program-hero-section position-relative text-white ">
         <div className="hero-bg-shape shape-1"></div>
         <div className="hero-bg-shape shape-2"></div>
         <div className="hero-bg-shape shape-3"></div>

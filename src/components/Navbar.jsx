@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 const Navbar = () => {
   return (
-<BSNavbar expand="lg" className="theme-navbar shadow-sm">
+<BSNavbar expand="lg" className="theme-navbar shadow-sm fixed-top">
   <Container>
     {/* Brand */}
     <BSNavbar.Brand as={Link} to="/" className="fw-bold text-dark">

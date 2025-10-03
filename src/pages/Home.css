@@ -1,0 +1,25 @@
+.partnership-section {
+  background: linear-gradient(135deg, #9569e6 0%, #8340f0 100%);
+  overflow: hidden;
+  position: relative;
+}
+
+.bg-icon {
+  position: absolute;
+  font-size: 4rem;
+  color: rgba(255, 255, 255, 0.15);
+  animation: float 8s ease-in-out infinite;
+}
+
+.icon1 { top: 20%; left: 10%; animation-delay: 0s; }
+.icon2 { bottom: 15%; right: 20%; animation-delay: 2s; }
+.icon3 { top: 50%; right: 5%; animation-delay: 4s; }
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) translateX(0px); }
+  50% { transform: translateY(-20px) translateX(10px); }
+}
+.custom-blue-section {
+  padding-top: 8rem; /* or any value you want */
+  padding-bottom: 5rem;
+}
