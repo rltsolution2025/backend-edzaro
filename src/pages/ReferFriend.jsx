@@ -11,7 +11,7 @@ const ReferFriend = () => {
     refereePhone: "",
     programInterested: "",
     referredBy: "",
-    status: "Pending",
+    // status: "Pending",
   });
   const [message, setMessage] = React.useState("");
 
@@ -167,7 +167,7 @@ const ReferFriend = () => {
             >
               <Card className="shadow-lg">
                 <Card.Header className="bg-primary text-white">
-                  <h4 className="mb-0">Share Your Referral Link</h4>
+                  <h4 className="mb-0">Share Your Referral </h4>
                 </Card.Header>
                 <Card.Body>
                   <Form>
@@ -199,7 +199,7 @@ const ReferFriend = () => {
       </Col>
     </Row>
     <Form.Control type="text" onChange={handleChange} placeholder="Referee's Phone" className="mb-2" />
-    <Form.Select aria-label="Program Interested" className="mb-2">
+    <Form.Select onChange={handleChange} aria-label="Program Interested" className="mb-2">
       <option value="">Select Program Interested</option>
       <option value="aws-cloud">AWS Cloud Program</option>
       <option value="devops">DevOps Program</option>
@@ -217,6 +217,7 @@ const ReferFriend = () => {
   <Button variant="primary" onClick={handleSubmit} className="w-100">
     Send Referral Invitation
   </Button>
+  {message && <p className="mt-3">{message}</p>}
 </Form>
 
                 </Card.Body>

@@ -5,6 +5,7 @@ const API_BASE_URL = 'http://localhost:5000/api'; // Replace with your backend U
 
 export const submitHiringPartner = async (data) => {
     try {
+        console.log('sending data to backend:', data);
         const response = await axios.post(`${API_BASE_URL}/hire`, data);
         return response.data;
     } catch (error) {
@@ -18,5 +19,14 @@ export const submitReference = async (data) => {
         return response.data;
     } catch (error) {
         throw new Error(error.response.data.message || "Error submitting form.");
+    }   
+};
+
+export const submitEnquiry = async (data) => {
+    try {
+        const response = await axios.post(`${API_BASE_URL}/enquire`, data); 
+        return response.data;
+    } catch (error) {
+        throw new Error(error.response.data.error || "Error submitting form.");
     }   
 };

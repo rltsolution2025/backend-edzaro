@@ -23,6 +23,7 @@ const HireEdzaro = () => {
       await submitHiringPartner(formData);
       setMessage("✅ Thank you! We'll get in touch soon.");
       setFormData({ companyName: "", yourName: "", email: "", role: "" });
+      console.log("Form submitted successfully to backend.");
     } catch (error) {
       setMessage(`❌ ${error.message || "Error submitting form."}`);
     }

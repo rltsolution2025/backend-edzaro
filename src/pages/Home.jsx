@@ -8,6 +8,7 @@ import EnrollForm from '../components/EnrollForm';
 import './Home.css';
 
 const Home = () => {
+  
   const courses = [
     {
       title: "Web Development Bootcamp",

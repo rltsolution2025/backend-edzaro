@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
+import { submitEnquiry } from "../pages/Api/Api";
 
 const EnrollForm = ({ courseName }) => {
   const [formData, setFormData] = useState({
@@ -17,12 +18,17 @@ const EnrollForm = ({ courseName }) => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert(
-      `Thank you, ${formData.name}! Your enrollment request for "${courseName}" has been received.`
-    );
-    setFormData({ name: "", email: "", phone: "", agree: false });
+    try{
+      await submitEnquiry(formData);
+      alert("✅ Thank you! We'll get in touch soon.");
+      setFormData({ name: "", email: "", phone: "", agree: false });
+    } catch (error) {
+      alert(`❌ ${error.message || "Error submitting form."}`);   
+      console.error("Error submitting form:", error);
+    }
+    console.log("Form submitted:", formData);
   };
 
   return (

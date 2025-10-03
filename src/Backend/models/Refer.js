@@ -38,11 +38,11 @@ const referSchema = new Schema(
       required: true,
       trim: true,
     },
-    status: {
-      type: String,
-      enum: ["Pending", "Invitation Sent", "Enrolled", "Converted"],
-      default: "Pending",
-    },
+    // status: {
+    //   type: String,
+    //   enum: ["Pending", "Invitation Sent", "Enrolled", "Converted"],
+    //   default: "Pending",
+    // },
   },
   {
     timestamps: true, // Adds createdAt and updatedAt automatically
