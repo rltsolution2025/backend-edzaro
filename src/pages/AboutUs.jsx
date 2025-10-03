@@ -11,7 +11,7 @@ const AboutUs = () => {
       transition={{ duration: 0.5 }}
     >
       {/* Hero Section */}
-      <section className="about-hero-section position-relative py-5">
+      <section className="about-hero-section position-relative ">
         {/* Subtle background shapes */}
         <div className="bg-shape-hero shape-1"></div>
         <div className="bg-shape-hero shape-2"></div>
