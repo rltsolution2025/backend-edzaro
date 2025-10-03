@@ -1,35 +1,49 @@
-import React from "react";
+import React, { use, useState } from "react";
 import { Container, Row, Col, Card, Button, Form } from "react-bootstrap";
 import { motion } from "framer-motion";
 import './Refer.css';
 import { submitReference } from './Api/Api'; // import the API function
 
 const ReferFriend = () => {
-  const [formData, setFormData] = React.useState({
+ const [formData, setFormData] = useState({
     refereeName: "",
     refereeEmail: "",
     refereePhone: "",
     programInterested: "",
     referredBy: "",
-    // status: "Pending",
+    status: "Pending", // default status
   });
-  const [message, setMessage] = React.useState("");
 
+  const [message, setMessage] = useState("");
+
+  // Handle controlled input changes
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  }
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission logic here
-    console.log(formData);
     try {
-          await submitReference(formData);
-          setMessage("✅ Thank you! We'll get in touch soon.");
-          setFormData({ refereeName: "", refereeEmail: "", refereePhone: "", programInterested: "", referredBy: "", status: "Pending" });
-        } catch (error) {
-          setMessage(`❌ ${error.message || "Error submitting form."}`);
-        }
-  }
+      console.log("Sending data to backend:", formData);
+      await submitReference(formData);
+
+      setMessage("✅ Thank you! We'll get in touch soon.");
+      // Reset form
+      setFormData({
+        refereeName: "",
+        refereeEmail: "",
+        refereePhone: "",
+        programInterested: "",
+        referredBy: "",
+        status: "Pending",
+      });
+    } catch (error) {
+      console.error("Error submitting enquiry:", error);
+      setMessage(`❌ ${error.message || "Error submitting form."}`);
+    }
+  };
 
   return (
     <motion.div
@@ -170,55 +184,79 @@ const ReferFriend = () => {
                   <h4 className="mb-0">Share Your Referral </h4>
                 </Card.Header>
                 <Card.Body>
-                  <Form>
-  {/* Your Unique Referral Link */}
-  {/* <Form.Group className="mb-3">
-    <Form.Label>Your Unique Referral Link</Form.Label>
-    <div className="input-group">
-      <Form.Control
-        type="text"
-        value="https://edzaro.com/ref/your-unique-code"
-        readOnly
-      />
-      <Button variant="outline-secondary">Copy Link</Button>
-    </div>
-    <Form.Text className="text-muted">
-      Share this link with your friends via email, social media, or messaging apps
-    </Form.Text>
-  </Form.Group> */}
+                  <Form onSubmit={handleSubmit}>
+      {/* Referee Details */}
+      <Form.Group className="mb-3">
+        <Form.Label>Referee Details</Form.Label>
+        <Row className="mb-2">
+          <Col md={6} className="mb-2">
+            <Form.Control
+              type="text"
+              name="refereeName"
+              value={formData.refereeName}
+              onChange={handleChange}
+              placeholder="Referee's Name"
+              required
+            />
+          </Col>
+          <Col md={6}>
+            <Form.Control
+              type="email"
+              name="refereeEmail"
+              value={formData.refereeEmail}
+              onChange={handleChange}
+              placeholder="Referee's Email"
+              required
+            />
+          </Col>
+        </Row>
 
-  {/* Referee Details */}
-  <Form.Group className="mb-3">
-    <Form.Label>Referee Details</Form.Label>
-    <Row className="mb-2">
-      <Col md={6} className="mb-2">
-        <Form.Control type="text" onChange={handleChange} placeholder="Referee's Name" />
-      </Col>
-      <Col md={6}>
-        <Form.Control type="email" onChange={handleChange} placeholder="Referee's Email" />
-      </Col>
-    </Row>
-    <Form.Control type="text" onChange={handleChange} placeholder="Referee's Phone" className="mb-2" />
-    <Form.Select onChange={handleChange} aria-label="Program Interested" className="mb-2">
-      <option value="">Select Program Interested</option>
-      <option value="aws-cloud">AWS Cloud Program</option>
-      <option value="devops">DevOps Program</option>
-      <option value="ai-program">AI Program</option>
-      <option value="fullstack">Fullstack Development</option>
-    </Form.Select>
-  </Form.Group>
+        <Form.Control
+          type="text"
+          name="refereePhone"
+          value={formData.refereePhone}
+          onChange={handleChange}
+          placeholder="Referee's Phone"
+          className="mb-2"
+          required
+        />
 
-  {/* Referred By */}
-  <Form.Group className="mb-3">
-    <Form.Label>Referred By</Form.Label>
-    <Form.Control type="text" onChange={handleChange} placeholder="Your Name" />
-  </Form.Group>
+        <Form.Select
+          name="programInterested"
+          value={formData.programInterested}
+          onChange={handleChange}
+          aria-label="Program Interested"
+          className="mb-2"
+          required
+        >
+          <option value="">Select Program Interested</option>
+          <option value="AWS-Cloud-Program">AWS Cloud Program</option>
+          <option value="DevOps-Program">DevOps Program</option>
+          <option value="AI-Program">AI Program</option>
+          <option value="Full-Stack-Development">Fullstack Development</option>
+        </Form.Select>
+      </Form.Group>
 
-  <Button variant="primary" onClick={handleSubmit} className="w-100">
-    Send Referral Invitation
-  </Button>
-  {message && <p className="mt-3">{message}</p>}
-</Form>
+      {/* Referred By */}
+      <Form.Group className="mb-3">
+        <Form.Label>Referred By</Form.Label>
+        <Form.Control
+          type="text"
+          name="referredBy"
+          value={formData.referredBy}
+          onChange={handleChange}
+          placeholder="Your Name"
+          required
+        />
+      </Form.Group>
+
+      <Button variant="primary" type="submit" className="w-100">
+        Send Referral Invitation
+      </Button>
+
+      {message && <p className="mt-3">{message}</p>}
+    </Form>
+  
 
                 </Card.Body>
               </Card>

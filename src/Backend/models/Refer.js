@@ -26,11 +26,10 @@ const referSchema = new Schema(
       required: true,
       trim: true,
       enum: [
-        "Full Stack Development",
-        "Data Science",
-        "AWS Certification",
-        "UI/UX Design",
-        "Other",
+        "AWS-Cloud-Program",
+        "DevOps-Program",
+        "AI-Program",
+        "Full-Stack-Development",
       ], // You can update this list based on your actual programs
     },
     referredBy: {
@@ -38,11 +37,10 @@ const referSchema = new Schema(
       required: true,
       trim: true,
     },
-    // status: {
-    //   type: String,
-    //   enum: ["Pending", "Invitation Sent", "Enrolled", "Converted"],
-    //   default: "Pending",
-    // },
+    status: {
+      type: String,
+      default: "Pending",
+    },
   },
   {
     timestamps: true, // Adds createdAt and updatedAt automatically

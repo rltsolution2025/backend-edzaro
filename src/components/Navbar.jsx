@@ -15,34 +15,14 @@ const Navbar = () => {
     <BSNavbar.Toggle aria-controls="basic-navbar-nav" />
     <BSNavbar.Collapse id="basic-navbar-nav">
       <Nav className="ms-auto align-items-center">
-
-        {/* Program Dropdown */}
- <NavDropdown
-  title={
-    <motion.div
-      whileHover={{ scale: 1.05 }}
-      transition={{ duration: 0.2 }}
-      className="d-flex align-items-center text-dark"
-      style={{ gap: '5px' }} // space between text and arrow
-    >
-      Program
-      <span style={{ fontSize: '1.4em' }}>&#9662;</span> {/* ▼ symbol */}
-    </motion.div>
-  }
-  id="inside-program-dropdown"
-  className="mx-2"
-  drop="end"
-  renderMenuOnMount={true}
- // remove default caret
->
+<NavDropdown title="Program" id="program-dropdown">
+  <NavDropdown.Item as={Link} to="/inside-program/cloud-developer">
+    AWS Cloud Developer
+  </NavDropdown.Item>
   <NavDropdown.Item as={Link} to="/inside-program/ai-developer">
     AI Developer
   </NavDropdown.Item>
-  <NavDropdown.Item as={Link} to="/inside-program/cloud-developer">
-    Cloud Developer
-  </NavDropdown.Item>
 </NavDropdown>
-
         {[ 
           { to: "/refer-friend", label: "Refer a Friend" },
           { to: "/career", label: "Career" },

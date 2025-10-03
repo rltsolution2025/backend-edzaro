@@ -12,6 +12,7 @@ router.post('/', async(req, res) => {
         const newEnquire = new Enquire({ name, email, phone, agree });
         await newEnquire.save();
         res.status(201).json({ message: "Enquiry submitted successfully", data: newEnquire });
+        console.log("Enquiry saved:", newEnquire);
     } catch (err) {
         console.error(err);
         res.status(500).json({ error: "Server error" });

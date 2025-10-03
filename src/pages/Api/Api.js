@@ -17,6 +17,7 @@ export const submitReference = async (data) => {
     try {
         const response = await axios.post(`${API_BASE_URL}/refer`, data);
         return response.data;
+        console.log('submitted to backend  successfully');
     } catch (error) {
         throw new Error(error.response.data.message || "Error submitting form.");
     }   
