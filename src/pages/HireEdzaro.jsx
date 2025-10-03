@@ -1,9 +1,33 @@
 import React from 'react';
+import { useState } from 'react';
+import { submitHiringPartner } from './Api/Api'; // import the API function
 import { Container, Row, Col, Card, Button, Form } from 'react-bootstrap';
 import { motion } from 'framer-motion';
 import './Hire.css';
 
 const HireEdzaro = () => {
+  const [formData, setFormData] = useState({
+    companyName: "",
+    contactPerson: "",
+    email: "",
+    roles: ""
+  });
+  const [message, setMessage] = useState("");
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+   try {
+      await submitHiringPartner(formData);
+      setMessage("✅ Thank you! We'll get in touch soon.");
+      setFormData({ companyName: "", yourName: "", email: "", role: "" });
+    } catch (error) {
+      setMessage(`❌ ${error.message || "Error submitting form."}`);
+    }
+  }
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -101,23 +125,23 @@ const HireEdzaro = () => {
         <Col md={6}>
           <Form.Group className="mb-3">
             <Form.Label>Company Name</Form.Label>
-            <Form.Control type="text" placeholder="Enter company name" />
+            <Form.Control type="text" onChange={handleChange} name="companyName" value={formData.companyName} placeholder="Enter company name" />
           </Form.Group>
         </Col>
         <Col md={6}>
           <Form.Group className="mb-3">
             <Form.Label>Your Name</Form.Label>
-            <Form.Control type="text" placeholder="Your full name" />
+            <Form.Control type="text" onChange={handleChange} name="yourName" value={formData.yourName} placeholder="Your full name" />
           </Form.Group>
         </Col>
       </Row>
       <Form.Group className="mb-3">
         <Form.Label>Email Address</Form.Label>
-        <Form.Control type="email" placeholder="company@email.com" />
+        <Form.Control type="email" onChange={handleChange} name="email" value={formData.email} placeholder="company@email.com" />
       </Form.Group>
       <Form.Group className="mb-3">
         <Form.Label>What roles are you hiring for?</Form.Label>
-        <Form.Select>
+        <Form.Select onChange={handleChange} name="roles" value={formData.roles}>
           <option>Select roles...</option>
           <option>Frontend Developer</option>
           <option>Backend Developer</option>
@@ -125,10 +149,11 @@ const HireEdzaro = () => {
           <option>Mobile Developer</option>
         </Form.Select>
       </Form.Group>
-      <Button variant="warning" className="w-100"> {/* yellow button */}
+      <Button variant="warning" onClick={handleSubmit} className="w-100"> {/* yellow button */}
         Get Access to Talent Pool
       </Button>
     </Form>
+    {message && <p className="mt-3">{message}</p>}
   </Card.Body>
 </Card>
 

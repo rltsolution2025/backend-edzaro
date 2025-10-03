@@ -2,8 +2,35 @@ import React from "react";
 import { Container, Row, Col, Card, Button, Form } from "react-bootstrap";
 import { motion } from "framer-motion";
 import './Refer.css';
+import { submitReference } from './Api/Api'; // import the API function
 
 const ReferFriend = () => {
+  const [formData, setFormData] = React.useState({
+    refereeName: "",
+    refereeEmail: "",
+    refereePhone: "",
+    programInterested: "",
+    referredBy: "",
+    status: "Pending",
+  });
+  const [message, setMessage] = React.useState("");
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    // Handle form submission logic here
+    console.log(formData);
+    try {
+          await submitReference(formData);
+          setMessage("✅ Thank you! We'll get in touch soon.");
+          setFormData({ refereeName: "", refereeEmail: "", refereePhone: "", programInterested: "", referredBy: "", status: "Pending" });
+        } catch (error) {
+          setMessage(`❌ ${error.message || "Error submitting form."}`);
+        }
+  }
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -41,7 +68,7 @@ const ReferFriend = () => {
       {/* RIGHT TEXT */}
       <div className="col-md-6 text-dark">
         <h1 className="fw-bold display-5">
-          🎉 Refer Your <span className="brand">Friends</span> & Earn Rewards!
+           Refer Your <span className="brand">Friends</span> & Earn Rewards!
         </h1>
         <p className="lead mt-3">
           Invite your friends to join <strong>Edzaro</strong> and help them kickstart their 
@@ -165,13 +192,13 @@ const ReferFriend = () => {
     <Form.Label>Referee Details</Form.Label>
     <Row className="mb-2">
       <Col md={6} className="mb-2">
-        <Form.Control type="text" placeholder="Referee's Name" />
+        <Form.Control type="text" onChange={handleChange} placeholder="Referee's Name" />
       </Col>
       <Col md={6}>
-        <Form.Control type="email" placeholder="Referee's Email" />
+        <Form.Control type="email" onChange={handleChange} placeholder="Referee's Email" />
       </Col>
     </Row>
-    <Form.Control type="text" placeholder="Referee's Phone" className="mb-2" />
+    <Form.Control type="text" onChange={handleChange} placeholder="Referee's Phone" className="mb-2" />
     <Form.Select aria-label="Program Interested" className="mb-2">
       <option value="">Select Program Interested</option>
       <option value="aws-cloud">AWS Cloud Program</option>
@@ -184,10 +211,10 @@ const ReferFriend = () => {
   {/* Referred By */}
   <Form.Group className="mb-3">
     <Form.Label>Referred By</Form.Label>
-    <Form.Control type="text" placeholder="Your Name" />
+    <Form.Control type="text" onChange={handleChange} placeholder="Your Name" />
   </Form.Group>
 
-  <Button variant="primary" className="w-100">
+  <Button variant="primary" onClick={handleSubmit} className="w-100">
     Send Referral Invitation
   </Button>
 </Form>

@@ -60,6 +60,24 @@ const Home = () => {
     }
   ];
 
+   const testimonials = [
+    {
+      text: "Edzaro transformed my career from zero to software engineer!",
+      name: "John Doe",
+      role: "Web Developer",
+    },
+    {
+      text: "Hands-on training and great mentors. Highly recommend!",
+      name: "Jane Smith",
+      role: "Full-Stack Developer",
+    },
+    {
+      text: "From mobile apps to deployment—Edzaro covers it all.",
+      name: "Alex Johnson",
+      role: "App Developer",
+    },
+  ];
+
   const toggleSection = (index) => {
     setOpenIndex(openIndex === index ? null : index);
   };
@@ -74,16 +92,17 @@ const Home = () => {
       {/* Left Content Section */}
       <Col lg={6} className="mb-4 mb-lg-0 text-dark">
         <h1 className="fw-bold">
-          Learn Like You Would <br /> At India’s Top Tech Companies.
-        </h1>
-        <p className="text-muted fs-5">
-          Work-experience based learning programs to land your dream tech job
-        </p>
-        <p className="fs-6">
-          <strong>Build</strong> professional projects like the top 1% tech professionals.<br />
-          <strong>Master</strong> the latest Fullstack/Backend/Automation tech with real work-ex.<br />
-          <strong>Crack</strong> your dream role at the best tech companies.
-        </p>
+  Experience Learning the Way <br /> Top Tech Companies Train.
+</h1>
+<p className="text-muted fs-5">
+  Practical, industry-style programs designed to launch your dream tech career.
+</p>
+<p className="fs-6">
+  <strong>Work on</strong> real-world projects that reflect the standards of top tech talent.<br />
+  <strong>Gain expertise</strong> in modern Fullstack, Backend, and Automation technologies through hands-on experience.<br />
+  <strong>Secure</strong> top roles at leading technology companies.
+</p>
+
         <Button variant="success" className="mt-3">
           Upskill with Edzaro
         </Button>
@@ -266,10 +285,7 @@ const Home = () => {
     }
   `}</style>
 </motion.section>
-
-
-
-      {/* Inside the Program Section */}
+   {/* Inside the Program Section */}
       <motion.section
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
@@ -400,46 +416,123 @@ const Home = () => {
     />
   </div>
 </div>
-
-
-
-
-
       {/* Testimonials */}
-      <section className="py-5">
-        <Container>
-          <h2 className="text-center mb-5">What Our Students Say</h2>
-          <Row>
-            <Col md={4}>
-              <Card className="text-center shadow">
-                <Card.Body>
-                  <i className="bi bi-quote display-6 text-primary mb-3"></i>
-                  <p>"Edzaro transformed my career from zero to software engineer!"</p>
-                  <Card.Text className="fw-bold">John Doe, Web Developer</Card.Text>
-                </Card.Body>
-              </Card>
+       <section className="testimonial-section py-5 position-relative overflow-hidden">
+      {/* Floating shapes for background depth */}
+      <div className="floating-shape shape-1"></div>
+      <div className="floating-shape shape-2"></div>
+
+      <Container>
+        <motion.div
+          initial={{ opacity: 0, y: -30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-5"
+        >
+          <h2 className="display-6 fw-bold text-white">What Our Students Say</h2>
+          <p className="text-light lead">
+            Real stories from learners who grew their careers with Edzaro.
+          </p>
+        </motion.div>
+
+        <Row>
+          {testimonials.map((t, index) => (
+            <Col key={index} md={4} className="mb-4">
+              <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.2 }}
+              >
+                <Card className="testimonial-card text-center border-0 shadow-lg h-100">
+                  <Card.Body className="p-4 d-flex flex-column justify-content-between">
+                    <div>
+                      <div className="quote-icon mb-3">
+                        <i className="bi bi-quote display-5 text-primary"></i>
+                      </div>
+                      <p className="fst-italic text-secondary">"{t.text}"</p>
+                    </div>
+                    <div className="mt-4">
+                      <Card.Text className="fw-bold text-dark mb-0">{t.name}</Card.Text>
+                      <small className="text-muted">{t.role}</small>
+                    </div>
+                  </Card.Body>
+                </Card>
+              </motion.div>
             </Col>
-            <Col md={4}>
-              <Card className="text-center shadow">
-                <Card.Body>
-                  <i className="bi bi-quote display-6 text-primary mb-3"></i>
-                  <p>"Hands-on training and great mentors. Highly recommend!"</p>
-                  <Card.Text className="fw-bold">Jane Smith, Full-Stack Dev</Card.Text>
-                </Card.Body>
-              </Card>
-            </Col>
-            <Col md={4}>
-              <Card className="text-center shadow">
-                <Card.Body>
-                  <i className="bi bi-quote display-6 text-primary mb-3"></i>
-                  <p>"From mobile apps to deployment—Edzaro covers it all."</p>
-                  <Card.Text className="fw-bold">Alex Johnson, App Developer</Card.Text>
-                </Card.Body>
-              </Card>
-            </Col>
-          </Row>
-        </Container>
-      </section>
+          ))}
+        </Row>
+      </Container>
+
+      <style>{`
+        /* 🌈 Background Gradient */
+        .testimonial-section {
+          background: linear-gradient(135deg, #517cbbff, #65b0fcff, #398ef0ff);
+          background-size: 200% 200%;
+          animation: gradientMove 16s ease infinite;
+        }
+
+        @keyframes gradientMove {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
+
+        /* 🌀 Floating Shapes */
+        .floating-shape {
+          position: absolute;
+          background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
+          border-radius: 50%;
+          pointer-events: none;
+          animation: float 10s ease-in-out infinite;
+          filter: blur(30px);
+        }
+
+        .shape-1 {
+          width: 250px;
+          height: 250px;
+          top: -80px;
+          left: -80px;
+        }
+
+        .shape-2 {
+          width: 300px;
+          height: 300px;
+          bottom: -100px;
+          right: -60px;
+          animation-delay: 4s;
+        }
+
+        @keyframes float {
+          0% { transform: translateY(0) translateX(0); }
+          50% { transform: translateY(-25px) translateX(20px); }
+          100% { transform: translateY(0) translateX(0); }
+        }
+
+        /* 🧭 Testimonial Card */
+        .testimonial-card {
+          background: #ffffff;
+          border-radius: 16px;
+          transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .testimonial-card:hover {
+          transform: translateY(-8px) scale(1.02);
+          box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+        }
+
+        /* ✨ Quote Icon Animation */
+        .quote-icon i {
+          display: inline-block;
+          animation: pulse 2s infinite ease-in-out;
+        }
+
+        @keyframes pulse {
+          0% { transform: scale(1); opacity: 1; }
+          50% { transform: scale(1.2); opacity: 0.7; }
+          100% { transform: scale(1); opacity: 1; }
+        }
+      `}</style>
+    </section>
        <ComparisonTable />
     </div>
   );
