@@ -99,29 +99,6 @@ const ReferFriend = () => {
 </section>
 
       <Container>
-        {/* Heading */}
-        <Row className="mb-5">
-          <Col md={8} className="mx-auto text-center">
-            {/* <motion.h1
-              className="mb-4"
-              initial={{ y: -20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.6 }}
-            >
-              Refer a Friend
-            </motion.h1> */}
-            {/* <motion.p
-              className="lead"
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
-              Share the Edzaro experience with your friends and earn rewards! Both you and
-              your friend will receive special benefits.
-            </motion.p> */}
-          </Col>
-        </Row>
-
         {/* Benefits Section */}
         <Row className="mb-5">
           {[
@@ -144,7 +121,7 @@ const ReferFriend = () => {
               color: "warning",
             },
           ].map((item, i) => (
-            <Col md={4} className="mb-4" key={i}>
+            <Col md={4} className="mb-4 mt-4" key={i}>
               <motion.div
                 whileHover={{ y: -8, scale: 1.03 }}
                 className="card h-100 text-center shadow border-0"

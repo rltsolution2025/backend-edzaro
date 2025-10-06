@@ -1,6 +1,6 @@
 /* Animated gradient background */
 .animated-bg-refer {
-  background: linear-gradient(135deg, #99daf0, #dbeafe, #f0f9ff);
+  background: linear-gradient(135deg, #84cfe7, #bccee5, #92c5ec);
   background-size: 400% 400%;
   animation: gradientFlow 15s ease infinite;
   position: relative;
@@ -34,6 +34,9 @@
 .bubble-1 { top: -20px; left: -20px; animation-delay: 0s; }
 .bubble-2 { bottom: -30px; right: -10px; animation-delay: 2s; }
 .bubble-3 { top: 40%; right: -25px; animation-delay: 4s; }
+
+
+
 
 @keyframes gradientFlow {
   0% { background-position: 0% 50%; }

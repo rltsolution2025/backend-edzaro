@@ -37,6 +37,31 @@ const ComparisonTable = () => {
       other: false,
       ours: true,
     },
+     {
+      feature: "Hi tech learning platform",
+      other: false,
+      ours: true,
+    },
+     {
+      feature: "Career support & job assistance",
+      other: true,
+      ours: true,
+    },
+     {
+      feature: "On-Compass Drive",
+      other: false,
+      ours: true,
+    },
+     {
+      feature: "AI Lab",
+      other: false,
+      ours: true,
+    },
+     {
+      feature: "Scholarships & financial aid",
+      other: false,
+      ours: true,
+    },
   ];
 
   return (

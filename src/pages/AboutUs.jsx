@@ -2,6 +2,7 @@ import React from 'react';
 import { Container, Row, Col, Card, ListGroup } from 'react-bootstrap';
 import { motion } from 'framer-motion';
 import './About.css';
+import RLTTreeBootstrap from '../components/OrgTree';
 
 const AboutUs = () => {
   return (
@@ -22,19 +23,20 @@ const AboutUs = () => {
             <Col lg={6} className="mb-4 mb-lg-0 d-flex justify-content-center">
               <div className="about-illustration position-relative">
                 <div className="floating-bubble bubble-1">
-                  <i className="bi bi-building display-5 text-primary"></i>
+                  {/* <i className="bi bi-building display-5 text-primary"></i> */}
                 </div>
                 <div className="floating-bubble bubble-2">
-                  <i className="bi bi-laptop display-5 text-success"></i>
+                  {/* <i className="bi bi-laptop display-5 text-success"></i> */}
                 </div>
                 <div className="floating-bubble bubble-3">
-                  <i className="bi bi-people-fill display-5 text-info"></i>
+                  {/* <i className="bi bi-people-fill display-5 text-info"></i> */}
                 </div>
-                <img
-                  src="/assets/AboutUs.png"
+                {/* <img
+                  src="/assets/Aboutus.png"
                   alt="About RLT Group"
                   className="img-fluid rounded-4 shadow-sm"
-                />
+                /> */}
+                <RLTTreeBootstrap />
               </div>
             </Col>
 
@@ -96,7 +98,7 @@ const AboutUs = () => {
                 transition={{ duration: 0.7 }}
                 className="card h-100 border-0 shadow-sm p-4 text-center bg-light rounded-4"
               >
-                <img src="/assets/mission.png" alt="Mission Icon" className="mb-3" style={{ width: '80px' }} />
+                <img src="/assets/Mission.png" alt="Mission Icon" className="mb-3" style={{ width: '80px' }} />
                 <h4 className="mb-3">Our Mission</h4>
                 <p className="text-muted">
                   To provide holistic training across instrumentation, water management, schools, 
@@ -112,7 +114,7 @@ const AboutUs = () => {
                 transition={{ duration: 0.7 }}
                 className="card h-100 border-0 shadow-sm p-4 text-center bg-light rounded-4"
               >
-                <img src="/assets/vision.png" alt="Vision Icon" className="mb-3" style={{ width: '80px' }} />
+                <img src="/assets/Vision.png" alt="Vision Icon" className="mb-3" style={{ width: '80px' }} />
                 <h4 className="mb-3">Our Vision</h4>
                 <p className="text-muted">
                   To be recognized as the most trusted provider of innovative education and training, bridging industry needs with human potential across multiple domains.
@@ -128,14 +130,16 @@ const AboutUs = () => {
         <Container>
           <Row className="align-items-center">
             <Col md={6} className="mb-4 mb-md-0">
-              <motion.img 
-                src="https://via.placeholder.com/500x350/6c757d/ffffff?text=RLT+Group" 
-                alt="Edzaro Team"
-                className="img-fluid rounded shadow-sm"
-                initial={{ scale: 0.9 }}
-                whileInView={{ scale: 1 }}
-                transition={{ duration: 0.5 }}
-              />
+<motion.img 
+  src="/assets/OurStory.png" 
+  alt="Edzaro Team"
+  className="img-fluid rounded shadow-sm"
+    style={{ maxWidth: "400px", width: "100%", height: "auto" }}
+  initial={{ scale: 0.9 }}
+  whileInView={{ scale: 1 }}
+  transition={{ duration: 0.5 }}
+/>
+
             </Col>
             <Col md={6}>
               <h3 className="mb-4">Our Story</h3>

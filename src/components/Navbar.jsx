@@ -14,8 +14,8 @@ const Navbar = () => {
 
     <BSNavbar.Toggle aria-controls="basic-navbar-nav" />
     <BSNavbar.Collapse id="basic-navbar-nav">
-      <Nav className="ms-auto align-items-center">
-<NavDropdown title="Program" id="program-dropdown">
+      <Nav className="ms-auto align-items-center" whileHover={{ scale: 1.05 }} transition={{ duration: 0.2 }}>
+<NavDropdown title="Program" id="program-dropdown"  className="fw-bold text-dark">
   <NavDropdown.Item as={Link} to="/inside-program/cloud-developer">
     AWS Cloud Developer
   </NavDropdown.Item>
@@ -29,7 +29,7 @@ const Navbar = () => {
           { to: "/hire-edzaro", label: "Hire from Edzaro" },
           { to: "/platform", label: "Platform" },
         ].map((link, i) => (
-          <Nav.Link as={Link} to={link.to} key={i} className="mx-2 text-dark">
+          <Nav.Link as={Link} to={link.to} key={i} className="mx-2 fw-bold  text-dark">
             <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.2 }}>
               {link.label}
             </motion.div>

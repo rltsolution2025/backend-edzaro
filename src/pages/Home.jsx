@@ -65,17 +65,17 @@ const Home = () => {
    const testimonials = [
     {
       text: "Edzaro transformed my career from zero to software engineer!",
-      name: "John Doe",
+      name: "Dinesh Kumar M",
       role: "Web Developer",
     },
     {
       text: "Hands-on training and great mentors. Highly recommend!",
-      name: "Jane Smith",
+      name: "Charulata S",
       role: "Full-Stack Developer",
     },
     {
       text: "From mobile apps to deployment—Edzaro covers it all.",
-      name: "Alex Johnson",
+      name: "Akhil P",
       role: "App Developer",
     },
   ];
