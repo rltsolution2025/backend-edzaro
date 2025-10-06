@@ -48,3 +48,54 @@
 .our-story-section img {
   max-width: 100px;
 }
+
+
+
+/* By numbers*/
+/* 🌌 Section background with animation */
+.stats-section {
+  position: relative;
+  padding: 60px 0;
+  overflow: hidden;
+  background: linear-gradient(135deg, #327ef0, #1f5891);
+  color: #fff;
+}
+
+/* ✨ Animated floating gradient */
+.animated-bg {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at center, #2196f3 0%, transparent 70%),
+              radial-gradient(circle at 30% 30%, #42a5f5 0%, transparent 40%),
+              radial-gradient(circle at 70% 70%, #90caf9 0%, transparent 40%);
+  animation: floatBackground 20s infinite linear;
+  opacity: 0.4;
+  z-index: 0;
+}
+
+@keyframes floatBackground {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(50px, 50px) rotate(180deg); }
+  100% { transform: translate(0, 0) rotate(360deg); }
+}
+
+/* 📝 Stats list */
+.stats-list {
+  position: relative;
+  z-index: 1;
+}
+
+.stat-item {
+  font-size: 1.2rem;
+  padding: 12px 0;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.stat-item:hover {
+  transform: scale(1.05);
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+}
