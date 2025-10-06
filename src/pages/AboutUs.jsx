@@ -137,7 +137,7 @@ const AboutUs = () => {
       
       {/* Leadership & Stats Section */}
       <section className="stats-section">
-      <div className="animated-bg"></div>
+      <div className="animated-bg1"></div>
 
       <Row>
         <Col md={8} className="mx-auto text-center">

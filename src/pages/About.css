@@ -62,15 +62,15 @@
 }
 
 /* ✨ Animated floating gradient */
-.animated-bg {
+.animated-bg1 {
   position: absolute;
   top: -50%;
   left: -50%;
   width: 200%;
   height: 200%;
-  background: radial-gradient(circle at center, #2196f3 0%, transparent 70%),
+  background: radial-gradient(circle at center, #78abd4 0%, transparent 70%),
               radial-gradient(circle at 30% 30%, #42a5f5 0%, transparent 40%),
-              radial-gradient(circle at 70% 70%, #90caf9 0%, transparent 40%);
+              radial-gradient(circle at 70% 70%, #5ea2da 0%, transparent 40%);
   animation: floatBackground 20s infinite linear;
   opacity: 0.4;
   z-index: 0;
