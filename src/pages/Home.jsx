@@ -30,7 +30,7 @@ const Home = () => {
       btn: "warning",
     },
     {
-      title: "Data Science & AI",
+      title: "Gen AI",
       text: "Python, Machine Learning, Deep Learning, and AI projects for real-world problems.",
       img: "/assets/Data.png",
       btn: "primary",
@@ -254,9 +254,14 @@ const Home = () => {
               <p className="text-light small mb-3">
                 {course.description || "Short description about this course goes here."}
               </p>
+              <div className="d-flex flex-column" style={{ borderRadius: "20%" }}>
               <Button variant="light" size="sm" className="mb-2">
-                Enroll Now
+                View Program
               </Button>
+              <Button variant="light" size="sm" className="mb-2">
+                <i className="bi bi-download me-1"></i> Download Brochure
+              </Button>
+              </div>
             </div>
           </Card>
         </Col>
