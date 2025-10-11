@@ -2,9 +2,12 @@ import React from "react";
 import { Navbar as BSNavbar, Nav, Container, NavDropdown } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
+import EnrollForm from "./EnrollForm";
 
 const Navbar = () => {
-  const location = useLocation(); // 👉 gives current URL path
+  const location = useLocation(); 
+  const [showEnrollForm, setShowEnrollForm] = React.useState(false);
+
 
   const links = [
     { to: "/refer-friend", label: "Refer a Friend" },
@@ -14,11 +17,16 @@ const Navbar = () => {
   ];
 
   return (
-    <BSNavbar expand="lg" className="theme-navbar shadow-sm fixed-top">
+    <BSNavbar expand="lg" className="theme-navbar shadow-sm fixed-top d-flex flex-column">
+    <Container fluid className="py-1 justify-content-center " style={{ backgroundColor: '#214b75ff' }} >
+        <div style={{ fontSize: '16px', color: 'hsla(0, 0%, 100%, 1.00)', textAlign: 'center', width: '100%' }}>
+          <strong>Need Help!</strong> Talk to our Career Advisors: <a href="tel:+2349012345678" style={{ color: '#ffffffff', textDecoration: 'none' }}>+91 89255 00513</a> | <a href="mailto:info@edzaro.com" style={{ color: '#ffffffff', textDecoration: 'none' }}>info@edzaro.com</a> | <a onClick={() => setShowEnrollForm(true)} style={{ color: '#ffffffff' }}> Request a callback</a>
+        </div>
+    </Container>
       <Container>
         {/* Brand */}
         <BSNavbar.Brand as={Link} to="/" className="fw-bold text-dark">
-          RLT Edzaro
+          RLT Edzaro  
         </BSNavbar.Brand>
 
         <BSNavbar.Toggle aria-controls="basic-navbar-nav" />
