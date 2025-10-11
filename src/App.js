@@ -11,6 +11,7 @@ import Career from './pages/Career';
 import HireEdzaro from './pages/HireEdzaro';
 import Platform from './pages/Platform';
 import AboutUs from './pages/AboutUs';
+import ChatBot from './components/AIChatBot';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
@@ -29,6 +30,7 @@ function App() {
           <Route path="/platform" element={<Platform />} />
           <Route path="/about-us" element={<AboutUs />} />
         </Routes>
+        {/* <ChatBot /> */}
         <Footer />
       </div>
     </Router>
