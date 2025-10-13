@@ -6,6 +6,8 @@ const cors = require("cors");
 const EnquireForm = require("./routes/EnquireForm");
 const HireForm = require("./routes/HireForm");
 const ReferForm = require("./routes/ReferForm");
+const chatRoutes = require("./routes/chatRoutes");
+const leadRoutes = require("./routes/leadRoutes");
 
 // Initialize app
 const app = express();
@@ -24,6 +26,10 @@ mongoose.connect("mongodb://127.0.0.1:27017/trialFormDB", {
 app.use("/api/enquire", EnquireForm);
 app.use("/api/hire", HireForm);
 app.use("/api/refer", ReferForm);
+app.use("/api/chat", chatRoutes);
+app.use("/api/lead", leadRoutes);
+
+
 
 // Default route
 app.get("/", (req, res) => {

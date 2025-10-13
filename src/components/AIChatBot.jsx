@@ -1,134 +1,315 @@
-// ChatBot.jsx
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
 
-const courses = [
-  'Full Stack Development',
-  'Data Science',
-  'AI & Machine Learning',
-  'Cloud Computing',
-  'Cybersecurity',
-  'UI/UX Design'
-];
-
-const ChatBot = () => {
-  const [open, setOpen] = useState(false);
+const AIChatBot = () => {
   const [messages, setMessages] = useState([
-    { text: 'Hello! I am your assistant. How can I help you today?', from: 'bot' }
+    { from: "bot", text: "Welcome to Edzaro! I'm your virtual assistant. How can I help you today?" },
   ]);
-  const [input, setInput] = useState('');
-  const [formStep, setFormStep] = useState(null);
-  const [formData, setFormData] = useState({});
-  const [formSubmitted, setFormSubmitted] = useState(false);
 
-  const sendMessage = (msgText) => {
-    if (!msgText) return;
-    const newMessages = [...messages, { text: msgText, from: 'user' }];
-    setMessages(newMessages);
-    setTimeout(() => handleBotResponse(msgText.toLowerCase(), newMessages), 500);
-    setInput('');
+  const [showInitialOptions, setShowInitialOptions] = useState(true);
+  const [showFollowUps, setShowFollowUps] = useState(false);
+  const [showNextQuestions, setShowNextQuestions] = useState(false);
+  const [collectInfo, setCollectInfo] = useState(false);
+  const [userData, setUserData] = useState({
+    name: "",
+    email: "",
+    qualification: "",
+    course: "",
+  });
+
+  // handle first question options
+  const handleInitialOption = (option) => {
+    let botReply = "";
+
+    if (option === "I am looking to up-skill") {
+      botReply = `Edzaro offers several upskilling programs tailored to your career goals. 
+We focus on Full Stack Development, QA Automation, Data Analytics, and more.
+Our programs emphasize practical, project-based learning with mentor support.`;
+    } else if (option === "I am a fresher & looking for my first job") {
+      botReply = `We help freshers build industry-ready skills with hands-on training and mock interviews. 
+Many students have secured placements through our career support program.`;
+    } else if (option === "I am planning to switch my job") {
+      botReply = `We specialize in helping professionals transition to tech careers. 
+With structured mentorship and real-time projects, our learners achieve smooth career shifts.`;
+    } else {
+      botReply = `That’s great! You can explore various learning paths based on your goals.`;
+    }
+
+    setMessages((prev) => [...prev, { from: "user", text: option }, { from: "bot", text: botReply }]);
+    setShowInitialOptions(false);
+    setShowFollowUps(true);
   };
 
-  const handleBotResponse = (text, newMessages) => {
-    // Form collection flow
-    if (formStep) {
-      if (formStep === 'name') {
-        setFormData({ ...formData, name: text });
-        setFormStep('education');
-        setMessages([...newMessages, { text: 'Nice to meet you! What is your highest education qualification?', from: 'bot' }]);
-      } else if (formStep === 'education') {
-        setFormData({ ...formData, education: text });
-        setFormStep('email');
-        setMessages([...newMessages, { text: 'Great! Please enter your email:', from: 'bot' }]);
-      } else if (formStep === 'email') {
-        setFormData({ ...formData, email: text });
-        setFormStep('phone');
-        setMessages([...newMessages, { text: 'Almost done! Please enter your phone number:', from: 'bot' }]);
-      } else if (formStep === 'phone') {
-        setFormData({ ...formData, phone: text });
-        setFormStep(null);
-        setFormSubmitted(true);
-        setMessages([...newMessages, { text: 'Thank you! Our career counselors will reach you shortly.', from: 'bot' }]);
-        console.log('Form submitted:', { ...formData, phone: text }); // Replace with API call if needed
-      }
-      return;
+  // handle follow-up options
+  const handleFollowUp = (option) => {
+    let botReply = "";
+
+    if (option === "Tell me about your program offering") {
+      botReply = `Edzaro provides Full Stack Development, Automation Testing, Data Analytics, and Cloud programs. 
+Each course combines live mentorship, hands-on projects, and job readiness modules.`;
+    } else if (option === "How do you provide job assistance?") {
+      botReply = `Our career support includes resume building, mock interviews, portfolio reviews, and direct placement drives with hiring partners.`;
+    } else if (option === "I don't know coding — how could I benefit from you?") {
+      botReply = `Edzaro's programs are specifically designed to help individuals from non-IT backgrounds—such as mechanical engineering, customer support, sales, and even the medical field—transition into tech.
+Many of our graduates have successfully secured jobs in tech after completing our structured, hands-on learning programs.`;
     }
 
-    // Keyword responses
-    if (text.includes('hello') || text.includes('hi')) {
-      setMessages([...newMessages, { text: 'Hi there! How can I assist you?', from: 'bot' }]);
-    } else if (text.includes('course')) {
-      const courseList = courses.map((c, i) => `${i + 1}. ${c}`).join('\n');
-      setMessages([...newMessages, { text: `We offer the following courses:\n${courseList}\nWhich course are you interested in?`, from: 'bot' }]);
-      setFormStep('name'); // start form
-    } else if (text.includes('callback')) {
-      setMessages([...newMessages, { text: 'Sure! Please provide your details below.', from: 'bot' }]);
-      setFormStep('name'); // start form
-    } else {
-      // Fallback for unknown input
-      const fallbackText = formSubmitted
-        ? 'Please contact our career counselor for more details. Our career counselors will reach you soon.'
-        : 'Please submit your details first. Our career counseling team will reach you shortly after that.';
-      setMessages([...newMessages, { text: fallbackText, from: 'bot' }]);
+    setMessages((prev) => [...prev, { from: "user", text: option }, { from: "bot", text: botReply }]);
+    setShowFollowUps(false);
+    setShowNextQuestions(true);
+  };
+
+  // handle next set of questions
+  const handleNextQuestion = (option) => {
+    let botReply = "";
+
+    if (option === "View curriculum of your programs") {
+      botReply = `You can view our program curriculums on our Courses page. Each course has detailed modules, project outlines, and mentor-led sessions.`;
+    } else if (option === "Tell me about the program offerings.") {
+      botReply = `Our programs cover Full Stack Development, QA Automation, Data Analytics, and Cloud Computing — designed for both beginners and working professionals.`;
+    } else if (option === "How do you provide job assistance?") {
+      botReply = `We offer personalized career guidance, placement training, and connect you with hiring partners to help you land your dream job.`;
     }
+
+    setMessages((prev) => [...prev, { from: "user", text: option }, { from: "bot", text: botReply }]);
+
+    // after last message → ask for user contact info
+    setTimeout(() => {
+      setMessages((prev) => [
+        ...prev,
+        {
+          from: "bot",
+          text: "Before we proceed, could you please share your details so our team can reach out to you?",
+        },
+      ]);
+      setShowNextQuestions(false);
+      setCollectInfo(true);
+    }, 800);
+  };
+
+  // handle form input
+  const handleInputChange = (e) => {
+    setUserData({ ...userData, [e.target.name]: e.target.value });
+  };
+
+  // submit user details to backend
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // show user info in chat
+    setMessages((prev) => [
+      ...prev,
+      {
+        from: "user",
+        text: `Name: ${userData.name}, Email: ${userData.email}, Qualification: ${userData.qualification}, Interested Course: ${userData.course}`,
+      },
+    ]);
+
+    try {
+      const response = await fetch("http://localhost:5000/api/enquiry", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(userData),
+      });
+
+      if (response.ok) {
+        setMessages((prev) => [
+          ...prev,
+          {
+            from: "bot",
+            text: "Thank you for sharing your details! Our counselor will reach out to you soon. Would you like to chat with our live assistant?",
+          },
+        ]);
+      } else {
+        setMessages((prev) => [
+          ...prev,
+          { from: "bot", text: "Oops! Something went wrong. Please try again later." },
+        ]);
+      }
+    } catch (error) {
+      setMessages((prev) => [
+        ...prev,
+        { from: "bot", text: "Error connecting to server. Please check your backend connection." },
+      ]);
+    }
+
+    setCollectInfo(false);
   };
 
   return (
-    <div style={{ position: 'fixed', bottom: 20, right: 20, width: 320, zIndex: 9999 }}>
-      <button 
-        onClick={() => setOpen(!open)} 
-        style={{
-          background: '#214b75', color: '#fff', border: 'none',
-          borderRadius: '50%', width: 50, height: 50, cursor: 'pointer'
-        }}
+    <div
+      className="card shadow-lg position-fixed bottom-0 end-0 m-3"
+      style={{ width: "360px", height: "520px", borderRadius: "15px", zIndex: 9999 }}
+    >
+      <div className="card-header bg-primary text-white fw-bold">
+        Edzaro HelpChat
+      </div>
+      <div
+        className="card-body overflow-auto"
+        style={{ height: "420px", background: "#f9f9f9" }}
       >
-        Chat
-      </button>
-
-      {open && (
-        <div style={{
-          background: '#fff', border: '1px solid #ccc', borderRadius: 8,
-          marginTop: 10, padding: 10, boxShadow: '0 4px 12px rgba(0,0,0,0.15)'
-        }}>
-          <div style={{ maxHeight: 350, overflowY: 'auto', marginBottom: 10 }}>
-            {messages.map((msg, i) => (
-              <div 
-                key={i} 
-                style={{
-                  textAlign: msg.from === 'user' ? 'right' : 'left',
-                  marginBottom: 5,
-                  background: msg.from === 'user' ? '#214b75' : '#f0f0f0',
-                  color: msg.from === 'user' ? '#fff' : '#000',
-                  padding: '5px 10px',
-                  borderRadius: 12,
-                  display: 'inline-block',
-                  maxWidth: '80%',
-                  whiteSpace: 'pre-line'
-                }}
-              >
-                {msg.text}
-              </div>
-            ))}
-          </div>
-          <div style={{ display: 'flex', gap: 5 }}>
-            <input 
-              type="text" 
-              value={input} 
-              onChange={(e) => setInput(e.target.value)} 
-              placeholder="Type a message..." 
-              style={{ flex: 1, padding: '5px 10px', borderRadius: 4, border: '1px solid #ccc' }}
-              onKeyDown={(e) => e.key === 'Enter' && sendMessage(input)}
-            />
-            <button 
-              onClick={() => sendMessage(input)} 
-              style={{ background: '#214b75', color: '#fff', border: 'none', borderRadius: 4, padding: '0 10px', cursor: 'pointer' }}
+        {messages.map((msg, index) => (
+          <div
+            key={index}
+            className={`d-flex mb-2 ${
+              msg.from === "bot" ? "justify-content-start" : "justify-content-end"
+            }`}
+          >
+            <div
+              className={`p-2 rounded-3 ${
+                msg.from === "bot"
+                  ? "bg-white text-dark border"
+                  : "bg-success text-white"
+              }`}
+              style={{ maxWidth: "75%" }}
             >
-              Send
+              {msg.text}
+            </div>
+          </div>
+        ))}
+
+        {/* Initial Options */}
+        {showInitialOptions && (
+          <div className="d-flex flex-column mt-3">
+            <button
+              className="btn btn-outline-secondary mb-2"
+              onClick={() => handleInitialOption("I am planning to switch my job")}
+            >
+              I am planning to switch my job
+            </button>
+            <button
+              className="btn btn-outline-secondary mb-2"
+              onClick={() =>
+                handleInitialOption("I am a fresher & looking for my first job")
+              }
+            >
+              I am a fresher & looking for my first job
+            </button>
+            <button
+              className="btn btn-outline-secondary mb-2"
+              onClick={() => handleInitialOption("I am looking to up-skill")}
+            >
+              I am looking to up-skill
+            </button>
+            <button
+              className="btn btn-outline-secondary mb-2"
+              onClick={() => handleInitialOption("I am only exploring")}
+            >
+              I am only exploring
             </button>
           </div>
-        </div>
-      )}
+        )}
+
+        {/* Follow-up Questions */}
+        {showFollowUps && (
+          <div className="d-flex flex-column mt-3">
+            <button
+              className="btn btn-outline-secondary mb-2"
+              onClick={() => handleFollowUp("Tell me about your program offering")}
+            >
+              Tell me about your program offering
+            </button>
+            <button
+              className="btn btn-outline-secondary mb-2"
+              onClick={() => handleFollowUp("How do you provide job assistance?")}
+            >
+              How do you provide job assistance?
+            </button>
+            <button
+              className="btn btn-outline-secondary mb-2"
+              onClick={() =>
+                handleFollowUp("I don't know coding — how could I benefit from you?")
+              }
+            >
+              I don't know coding — how could I benefit from you?
+            </button>
+          </div>
+        )}
+
+        {/* Next Set of Questions */}
+        {showNextQuestions && (
+          <div className="mt-3">
+            <p className="fw-bold">What do you wish to know more?</p>
+            <div className="d-flex flex-column">
+              <button
+                className="btn btn-outline-secondary mb-2"
+                onClick={() => handleNextQuestion("View curriculum of your programs")}
+              >
+                View curriculum of your programs
+              </button>
+              <button
+                className="btn btn-outline-secondary mb-2"
+                onClick={() =>
+                  handleNextQuestion("Tell me about the program offerings.")
+                }
+              >
+                Tell me about the program offerings.
+              </button>
+              <button
+                className="btn btn-outline-secondary"
+                onClick={() => handleNextQuestion("How do you provide job assistance?")}
+              >
+                How do you provide job assistance?
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* Contact Info Form */}
+        {collectInfo && (
+          <form onSubmit={handleSubmit} className="mt-3">
+            <div className="mb-2">
+              <input
+                type="text"
+                name="name"
+                placeholder="Your Name"
+                className="form-control"
+                value={userData.name}
+                onChange={handleInputChange}
+                required
+              />
+            </div>
+            <div className="mb-2">
+              <input
+                type="email"
+                name="email"
+                placeholder="Your Email"
+                className="form-control"
+                value={userData.email}
+                onChange={handleInputChange}
+                required
+              />
+            </div>
+            <div className="mb-2">
+              <input
+                type="text"
+                name="qualification"
+                placeholder="Qualification"
+                className="form-control"
+                value={userData.qualification}
+                onChange={handleInputChange}
+                required
+              />
+            </div>
+            <div className="mb-2">
+              <input
+                type="text"
+                name="course"
+                placeholder="Interested Course"
+                className="form-control"
+                value={userData.course}
+                onChange={handleInputChange}
+                required
+              />
+            </div>
+            <button className="btn btn-success w-100" type="submit">
+              Submit
+            </button>
+          </form>
+        )}
+      </div>
     </div>
   );
 };
 
-export default ChatBot;
+export default AIChatBot;
