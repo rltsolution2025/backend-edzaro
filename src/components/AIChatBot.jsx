@@ -13,6 +13,7 @@ const AIChatBot = () => {
   const [userData, setUserData] = useState({
     name: "",
     email: "",
+    phone: "",
     qualification: "",
     course: "",
   });
@@ -276,6 +277,17 @@ Many of our graduates have successfully secured jobs in tech after completing ou
                 placeholder="Your Email"
                 className="form-control"
                 value={userData.email}
+                onChange={handleInputChange}
+                required
+              />
+            </div>
+            <div className="mb-2">
+              <input
+                type="phone"
+                name="phone"
+                placeholder="Your Phone"
+                className="form-control"
+                value={userData.phone}
                 onChange={handleInputChange}
                 required
               />

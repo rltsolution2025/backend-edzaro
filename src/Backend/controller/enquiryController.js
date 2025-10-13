@@ -1,14 +1,14 @@
+// controllers/enquiryController.js
 const Enquiry = require("../models/enquiry");
 
 const submitEnquiry = async (req, res) => {
   try {
-    const { name, email, phone, message } = req.body;
-
-    if (!name || !email || !phone || !message) {
+    const { name, email, phone, qualification, course } = req.body;
+    if (!name || !email || !phone || !qualification || !course) {
       return res.status(400).json({ error: "All fields are required" });
     }
 
-    const newEnquiry = await Enquiry.create({ name, email, phone, message });
+    const newEnquiry = await Enquiry.create({ name, email, phone, qualification, course });
     res.status(200).json({
       success: true,
       message: "Enquiry submitted successfully!",

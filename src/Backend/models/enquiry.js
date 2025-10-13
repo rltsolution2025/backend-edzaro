@@ -1,11 +1,12 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
 const enquirySchema = new mongoose.Schema({
   name: String,
   email: String,
   phone: String,
-  message: String,
+  qualification: String,
+  course: String,
   createdAt: { type: Date, default: Date.now },
 });
 
-export default mongoose.model("Enquiry", enquirySchema);
+module.exports = mongoose.model("Enquiry", enquirySchema);
