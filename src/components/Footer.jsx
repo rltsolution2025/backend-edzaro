@@ -20,14 +20,14 @@ const Footer = () => {
           <Col md={4}>
             <h5>Quick Links</h5>
             <ul className="list-unstyled">
-              <li><Link to="/courses" className="text-light text-decoration-none">Courses</Link></li>
-              <li><Link to="/inside-program/AI-Developer" className="text-light text-decoration-none">Program</Link></li>
+              {/* <li><Link to="/courses" className="text-light text-decoration-none">Courses</Link></li>
+              <li><Link to="/inside-program/AI-Developer" className="text-light text-decoration-none">Program</Link></li> */}
               <li><Link to="/career" className="text-light text-decoration-none">Career</Link></li>
               <li><Link to="/about-us" className="text-light text-decoration-none">About Us</Link></li>
-              <li><Link to="/about-us" className="text-light text-decoration-none">AI for Developer</Link></li>
-              <li><Link to="/about-us" className="text-light text-decoration-none">Cloud Developer Program</Link></li>
-              <li><Link to="/about-us" className="text-light text-decoration-none">Refer & Earn</Link></li>
-              <li><Link to="/about-us" className="text-light text-decoration-none">Hire from Edzaro</Link></li>
+              <li><Link to="/inside-program/ai-developer" className="text-light text-decoration-none">AI for Developer</Link></li>
+              <li><Link to="/inside-program/cloud-developer" className="text-light text-decoration-none">Cloud Developer Program</Link></li>
+              <li><Link to="/refer-friend" className="text-light text-decoration-none">Refer & Earn</Link></li>
+              <li><Link to="/hire-edzaro" className="text-light text-decoration-none">Hire from Edzaro</Link></li>
             </ul>
           </Col>
           <Col md={4}>

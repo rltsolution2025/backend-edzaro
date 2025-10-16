@@ -6,7 +6,7 @@ import './InsideProgram.css';
 
 const programData = {
   "cloud-developer": {
-    title: "Cloud Application Developer Track",
+    title: "Cloud Developer Program",
     image: "/assets/Cloud.png",
     overview: "A 9-course track designed to prepare you for a career as a cloud developer in less than one year...",
     salary: "5 LPA – 15 LPA",
@@ -178,14 +178,14 @@ const InsideProgram = () => {
                       <li key={i}>{course}</li>
                     ))}
                   </ul>
-                  <motion.img
+                  {/* <motion.img
                     src={`https://via.placeholder.com/150x80/${q.color === 'primary' ? '007bff' : q.color === 'success' ? '28a745' : 'ffc107'}/ffffff?text=Course+Image`}
                     alt="Course Image"
                     className="img-fluid mt-3 rounded"
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     transition={{ duration: 0.5, delay: 0.4 }}
-                  />
+                  /> */}
                 </Card.Body>
               </motion.div>
             </Col>
