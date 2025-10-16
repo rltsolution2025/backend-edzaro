@@ -52,7 +52,7 @@ const ReferFriend = () => {
       transition={{ duration: 0.5 }}
       className="py-5 refer-bg"
     >
-      <section className="refer-section animated-bg-refer py-5">
+      <section className="refer-section animated-bg-refer ">
   {/* Decorative background shape */}
   <div className="refer-shape"></div>
 

@@ -10,32 +10,33 @@ import './Home.css';
 
 const Home = () => {
   
-  const courses = [
-    {
-      title: "Web Development Bootcamp",
-      text: "Learn HTML, CSS, JavaScript, React, and Node.js. Build responsive websites from scratch.",
-      img: "/assets/Web-Dev.png",
-      btn: "success",
-    },
-    {
-      title: "Gen AI",
-      text: "Master Flutter or React Native for iOS and Android apps. Hands-on projects included.",
-      img: "/assets/AI-Dev.png",
-      btn: "danger",
-    },
-    {
-      title: "Full-Stack Development",
-      text: "End-to-end training: Frontend, Backend, Databases, and Deployment with AWS.",
-      img: "/assets/Full-Dev.png",
-      btn: "warning",
-    },
-    {
-      title: "Gen AI",
-      text: "Python, Machine Learning, Deep Learning, and AI projects for real-world problems.",
-      img: "/assets/Data.png",
-      btn: "primary",
-    },
-  ];
+ const courses = [
+  {
+    title: "AI for Developers",
+    text: "Empower your development skills with Generative AI tools, APIs, and real-world AI applications. Learn to build intelligent apps using AWS AI services and frameworks.",
+    img: "/assets/AI-Dev.png",
+    btn: "primary",
+  },
+  {
+    title: "Cloud Developer Program",
+    text: "Gain hands-on experience in AWS Cloud architecture, deployment, and automation. Learn to design scalable, secure, and efficient cloud-native applications.",
+    img: "/assets/CloudDev.png",
+    btn: "success",
+  },
+  {
+    title: "Center for Artificial Intelligence",
+    text: "Dive deep into Machine Learning, Deep Learning, and AI innovation. Work on real-world projects that prepare you for the evolving AI-driven industry landscape.",
+    img: "/assets/Data.png",
+    btn: "warning",
+  },
+  {
+    title: "Full Stack GenAI Program",
+    text: "Master the complete development lifecycle — from frontend to backend to AI integration. Build smart, full-stack applications powered by Generative AI and AWS technologies.",
+    img: "/assets/Full-Dev.png",
+    btn: "danger",
+  },
+];
+
 
  const [openIndex, setOpenIndex] = useState(null);
 
@@ -214,7 +215,7 @@ const Home = () => {
 >
   <Container>
     <h2 className="text-center mb-5">
-      Our Software Development Courses
+      Our Software Courses
     </h2>
     <Row>
       {courses.map((course, index) => (
@@ -238,15 +239,20 @@ const Home = () => {
             </div>
 
             {/* Bottom Content Section */}
-            <Card.Body className="d-flex flex-column justify-content-between text-center course-content">
-              <h5 className="mb-3">{course.title}</h5>
-              <p className="text-muted">
-                {course.description || "Short description about this course goes here."}
-              </p>
-              <Button variant="primary" size="sm" className="mt-auto">
-                View Details
-              </Button>
-            </Card.Body>
+           <Card.Body className="d-flex flex-column justify-content-between text-center course-content">
+  <h5 className="mb-2 fw-semibold">{course.title}</h5>
+  <p className="text-muted small mb-2">
+    {course.text ||
+      "Get hands-on skills and industry exposure with AWS Cloud Institute."}
+  </p>
+  <p className="text-secondary fw-medium mb-3">
+    ⏱ {course.duration || "300 Hours"}
+  </p>
+  <Button variant={course.btn || "primary"} size="sm" className="mt-auto">
+    View Details
+  </Button>
+</Card.Body>
+
 
             {/* Full Hover Overlay (covers full card) */}
             <div className="full-overlay d-flex flex-column justify-content-center align-items-center text-center">
