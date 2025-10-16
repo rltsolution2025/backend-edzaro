@@ -24,6 +24,10 @@ const Footer = () => {
               <li><Link to="/inside-program/AI-Developer" className="text-light text-decoration-none">Program</Link></li>
               <li><Link to="/career" className="text-light text-decoration-none">Career</Link></li>
               <li><Link to="/about-us" className="text-light text-decoration-none">About Us</Link></li>
+              <li><Link to="/about-us" className="text-light text-decoration-none">AI for Developer</Link></li>
+              <li><Link to="/about-us" className="text-light text-decoration-none">Cloud Developer Program</Link></li>
+              <li><Link to="/about-us" className="text-light text-decoration-none">Refer & Earn</Link></li>
+              <li><Link to="/about-us" className="text-light text-decoration-none">Hire from Edzaro</Link></li>
             </ul>
           </Col>
           <Col md={4}>

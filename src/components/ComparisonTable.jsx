@@ -32,11 +32,6 @@ const ComparisonTable = () => {
       other: false,
       ours: true,
     },
-    {
-      feature: "Externship with top companies",
-      other: false,
-      ours: true,
-    },
      {
       feature: "Hi tech learning platform",
       other: false,

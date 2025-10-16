@@ -13,29 +13,30 @@ const Home = () => {
  const courses = [
   {
     title: "AI for Developers",
-    text: "Empower your development skills with Generative AI tools, APIs, and real-world AI applications. Learn to build intelligent apps using AWS AI services and frameworks.",
+    text: "Build smarter apps using Generative AI, APIs, and AWS AI tools. Turn ideas into intelligent solutions.",
     img: "/assets/AI-Dev.png",
     btn: "primary",
   },
   {
     title: "Cloud Developer Program",
-    text: "Gain hands-on experience in AWS Cloud architecture, deployment, and automation. Learn to design scalable, secure, and efficient cloud-native applications.",
+    text: "Design and deploy scalable apps on AWS. Master cloud architecture, automation, and security.",
     img: "/assets/CloudDev.png",
     btn: "success",
   },
   {
     title: "Center for Artificial Intelligence",
-    text: "Dive deep into Machine Learning, Deep Learning, and AI innovation. Work on real-world projects that prepare you for the evolving AI-driven industry landscape.",
+    text: "Explore ML, Deep Learning, and AI innovation through real-world projects and research.",
     img: "/assets/Data.png",
     btn: "warning",
   },
   {
     title: "Full Stack GenAI Program",
-    text: "Master the complete development lifecycle — from frontend to backend to AI integration. Build smart, full-stack applications powered by Generative AI and AWS technologies.",
+    text: "Build end-to-end web apps with AI integration. Combine full-stack skills with Generative AI power.",
     img: "/assets/Full-Dev.png",
     btn: "danger",
   },
 ];
+
 
 
  const [openIndex, setOpenIndex] = useState(null);
