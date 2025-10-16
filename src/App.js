@@ -12,6 +12,7 @@ import HireEdzaro from './pages/HireEdzaro';
 import Platform from './pages/Platform';
 import AboutUs from './pages/AboutUs';
 import ChatWidget from './components/chatWidget';
+import ScrollToTop from './components/ScrollTop';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
@@ -20,6 +21,7 @@ function App() {
     <Router>
       <div className="App">
         <Navbar />
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/courses" element={<Courses />} />
