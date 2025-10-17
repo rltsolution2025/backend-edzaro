@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const messageSchema = new mongoose.Schema(
+const liveChatSchema = new mongoose.Schema(
   {
     senderId: { type: String, required: true },
     receiverId: { type: String, required: true },
@@ -10,4 +10,4 @@ const messageSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("LiveChatMessage", messageSchema);
+module.exports = mongoose.model("LiveChatMessage", liveChatSchema);

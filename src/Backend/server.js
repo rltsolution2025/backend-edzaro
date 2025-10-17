@@ -9,6 +9,11 @@ const ReferForm = require("./routes/ReferForm");
 const chatRoutes = require("./routes/chatRoutes");
 const leadRoutes = require("./routes/leadRoutes");
 const enquiryRoutes = require("./routes/enquiryRoutes");
+const liveChatRoutes = require("./routes/LiveChatRoutes");
+const liveChatSocket = require("./Socket.io");
+const http = require("http");
+const { Server } = require("socket.io");
+
 
 // Initialize app
 const app = express();
@@ -30,7 +35,7 @@ app.use("/api/refer", ReferForm);
 app.use("/api/chat", chatRoutes);
 app.use("/api/lead", leadRoutes);
 app.use("/api/enquiry", enquiryRoutes);
-
+app.use("/api/livechat", liveChatRoutes);
 
 
 // Default route
@@ -38,8 +43,23 @@ app.get("/", (req, res) => {
   res.send("Welcome to the Enquiry API");
 });
 
+// ✅ Socket.io setup
+const server = http.createServer(app);
+const io = new Server(server, {
+  cors: {
+    origin: "http://localhost:3000",
+    methods: ["GET", "POST"],
+    allowedHeaders: ["Content-Type"],
+    credentials: true,
+  },
+});
+
+liveChatSocket(io);
+
+
 // Start server
 const PORT = 5000;
-app.listen(PORT, () => {
+
+server.listen(PORT, () => {
   console.log(`🚀 Server running on http://localhost:${PORT}`);
 });

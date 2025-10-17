@@ -1,6 +1,5 @@
-
 const express = require("express");
-const {getChatHistory} = require("../controller/LiveChatContorller");
+const { getChatHistory } = require("../controller/LiveChatContorller");
 
 const router = express.Router();
 

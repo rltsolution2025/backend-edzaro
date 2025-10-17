@@ -1,10 +1,12 @@
+// Only changes marked with comments "🔹 Updated"
+
 import React, { useState, useEffect, useRef } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { motion, AnimatePresence } from "framer-motion";
 import { io } from "socket.io-client";
 
 const SOUND_URL = "/sound.mp3";
-const socket = io("http://localhost:5000");
+const socket = io("http://localhost:5000"); // 🔹 Ensure port matches backend
 
 const AIChatBot = () => {
   const [messages, setMessages] = useState([
@@ -29,20 +31,17 @@ const AIChatBot = () => {
     course: "",
   });
 
-  // 🔔 play soft notification sound
   const playSound = () => {
     const audio = new Audio(SOUND_URL);
     audio.volume = 0.4;
     audio.play().catch(() => {});
   };
 
-  // Auto scroll
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
     playSound();
   }, [messages]);
 
-  // Handle initial conversation flow
   const handleInitialOption = (option) => {
     let botReply = "";
     if (option === "I am looking to up-skill") {
@@ -133,30 +132,36 @@ const AIChatBot = () => {
     setCollectInfo(false);
   };
 
-  // 🟢 SOCKET.IO Live Chat integration
+  // 🔹 Updated: SOCKET.IO Live Chat integration
   useEffect(() => {
-    socket.on("chatAccepted", ({ agentName }) => {
-      setMessages((prev) => [
-        ...prev,
-        { from: "bot", text: `🎉 ${agentName} has joined the chat!` },
-      ]);
-      setLiveChatActive(true);
+    // Listen for agent accepting the chat
+    socket.on("chatAccepted", ({ agentName, chatId: acceptedChatId }) => {
+      if (acceptedChatId === chatId) { // 🔹 ensure correct chatId
+        setMessages((prev) => [
+          ...prev,
+          { from: "bot", text: `🎉 ${agentName} has joined the chat!` },
+        ]);
+        setLiveChatActive(true);
+      }
     });
 
+    // Listen for incoming messages
     socket.on("receiveMessage", (msg) => {
-      setMessages((prev) => [...prev, msg]);
+      if (msg.chatId === chatId) { // 🔹 only show messages for this chat
+        setMessages((prev) => [...prev, msg]);
+      }
     });
 
     return () => {
       socket.off("chatAccepted");
       socket.off("receiveMessage");
     };
-  }, []);
+  }, [chatId]);
 
   const initiateLiveChat = () => {
     const id = Date.now().toString();
     setChatId(id);
-    socket.emit("requestLiveChat", userData);
+    socket.emit("requestLiveChat", { ...userData, chatId: id }); // 🔹 send chatId to backend
     setMessages((prev) => [
       ...prev,
       { from: "bot", text: "🔔 Request sent to our agents. Please wait for someone to accept..." },
@@ -167,7 +172,7 @@ const AIChatBot = () => {
   const sendMessage = (e) => {
     e.preventDefault();
     if (!newMessage.trim()) return;
-    socket.emit("sendMessage", { chatId, from: "user", text: newMessage });
+    socket.emit("sendMessage", { chatId, from: "user", text: newMessage }); // 🔹 include chatId
     setMessages((prev) => [...prev, { from: "user", text: newMessage }]);
     setNewMessage("");
   };

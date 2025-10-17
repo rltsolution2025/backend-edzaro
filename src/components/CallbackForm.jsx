@@ -1,37 +1,69 @@
-// EnrollForm.jsx
-import React from 'react';
-import { Button, Modal, Form, Row, Col } from 'react-bootstrap';
-
+import React from "react";
+import { Button, Modal, Form, Row, Col } from "react-bootstrap";
 
 const CallbackForm = ({ show, handleClose }) => {
   return (
-    <Modal 
-      show={show} 
-      onHide={handleClose} 
-      centered 
-      size="lg" // larger modal for split layout
+    <Modal
+      show={show}
+      onHide={handleClose}
+      centered
+      size="lg"
     >
-      <Modal.Body style={{ padding: 0 }}>
-        <Row>
+      <Modal.Body style={{ padding: 0, position: "relative" }}>
+        {/* Floating Close Button */}
+        <Button
+          variant="light"
+          onClick={handleClose}
+          style={{
+            position: "absolute",
+            top: "10px",
+            right: "10px",
+            zIndex: 10,
+            borderRadius: "50%",
+            boxShadow: "0 2px 6px rgba(0,0,0,0.2)",
+          }}
+        >
+          ✕
+        </Button>
+
+        <Row className="g-0" style={{ height: "100%" }}>
           {/* Left Image Section */}
-          <Col md={5} style={{ padding: 0 }}>
-            <img 
-              src='assets/Callback.png'
-              alt="Request Callback" 
-              style={{ 
-    width: '100%', 
-    height: '100%', 
-    // objectFit: 'contain',  
-    borderTopLeftRadius: '0.3rem', 
-    borderBottomLeftRadius: '0.3rem',
-    backgroundColor: '#f0f0f0' // optional, to fill empty space
-  }}
+          <Col
+            md={6}
+            style={{
+              padding: 0,
+              display: "flex",
+              alignItems: "stretch",
+            }}
+          >
+            <img
+              src="assets/Callback.png"
+              alt="Request Callback"
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                borderTopLeftRadius: "0.3rem",
+                borderBottomLeftRadius: "0.3rem",
+              }}
             />
           </Col>
 
           {/* Right Form Section */}
-          <Col md={7} style={{ padding: '2rem' }}>
-            <h4 className="mb-4">Request a Callback</h4>
+          <Col
+            md={6}
+            style={{
+              padding: "2rem",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              backgroundColor: "#ffffff",
+              borderTopRightRadius: "0.3rem",
+              borderBottomRightRadius: "0.3rem",
+            }}
+          >
+            <h4 className="mb-4 text-center">Request a Callback</h4>
+
             <Form>
               <Form.Group className="mb-3" controlId="formName">
                 <Form.Label>Name</Form.Label>
@@ -48,7 +80,7 @@ const CallbackForm = ({ show, handleClose }) => {
                 <Form.Control type="text" placeholder="Enter your phone number" />
               </Form.Group>
 
-              <Button variant="primary" type="submit" className="w-100">
+              <Button variant="primary" type="submit" className="w-100 mt-2">
                 Submit
               </Button>
             </Form>
