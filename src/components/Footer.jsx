@@ -19,7 +19,7 @@ const Footer = () => {
           </Col>
           <Col md={4}>
             <h5>Quick Links</h5>
-            <ul className="list-unstyled">
+            <ul className="list-unstyled">            
               {/* <li><Link to="/courses" className="text-light text-decoration-none">Courses</Link></li>
               <li><Link to="/inside-program/AI-Developer" className="text-light text-decoration-none">Program</Link></li> */}
               <li><Link to="/career" className="text-light text-decoration-none">Career</Link></li>

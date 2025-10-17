@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { motion, AnimatePresence } from "framer-motion";
+import { io } from "socket.io-client";
 
-// Add a soft ping sound in your public folder (public/sound.mp3)
 const SOUND_URL = "/sound.mp3";
+const socket = io("http://localhost:5000");
 
 const AIChatBot = () => {
   const [messages, setMessages] = useState([
@@ -13,7 +14,13 @@ const AIChatBot = () => {
   const [showFollowUps, setShowFollowUps] = useState(false);
   const [showNextQuestions, setShowNextQuestions] = useState(false);
   const [collectInfo, setCollectInfo] = useState(false);
+  const [showLiveChatOption, setShowLiveChatOption] = useState(false);
+  const [liveChatActive, setLiveChatActive] = useState(false);
+  const [newMessage, setNewMessage] = useState("");
+  const [chatId, setChatId] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
+  const chatEndRef = useRef(null);
+
   const [userData, setUserData] = useState({
     name: "",
     email: "",
@@ -22,32 +29,30 @@ const AIChatBot = () => {
     course: "",
   });
 
-  const chatEndRef = useRef(null);
-
+  // 🔔 play soft notification sound
   const playSound = () => {
     const audio = new Audio(SOUND_URL);
     audio.volume = 0.4;
     audio.play().catch(() => {});
   };
 
-  // Auto-scroll to latest message
+  // Auto scroll
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
     playSound();
   }, [messages]);
 
-  // handle first question options
+  // Handle initial conversation flow
   const handleInitialOption = (option) => {
     let botReply = "";
-
     if (option === "I am looking to up-skill") {
-      botReply = `💡 Edzaro offers several upskilling programs tailored to your career goals. We focus on Full Stack Development, QA Automation, Data Analytics, and more.`;
+      botReply = `💡 Edzaro offers several upskilling programs tailored to your career goals.`;
     } else if (option === "I am a fresher & looking for my first job") {
-      botReply = `🚀 We help freshers build industry-ready skills with hands-on training and mock interviews. Many students have secured placements through our career support program.`;
+      botReply = `🚀 We help freshers become industry-ready with real projects and mock interviews.`;
     } else if (option === "I am planning to switch my job") {
-      botReply = `🎯 We specialize in helping professionals transition to tech careers with mentorship and real-time projects.`;
+      botReply = `🎯 We guide professionals to switch to tech careers with real-time mentorship.`;
     } else {
-      botReply = `That's great! You can explore various learning paths based on your goals.`;
+      botReply = `That's great! You can explore various learning paths.`;
     }
 
     setMessages((prev) => [...prev, { from: "user", text: option }, { from: "bot", text: botReply }]);
@@ -59,11 +64,11 @@ const AIChatBot = () => {
     let botReply = "";
 
     if (option === "Tell me about your program offering") {
-      botReply = `📘 We provide Full Stack Development, QA Automation, Data Analytics, and Cloud programs. Each combines live mentorship and job readiness modules.`;
+      botReply = `📘 We provide Full Stack Development, QA Automation, Data Analytics, and Cloud programs.`;
     } else if (option === "How do you provide job assistance?") {
-      botReply = `💼 Our career support includes resume building, mock interviews, and placement drives with hiring partners.`;
-    } else if (option === "I don't know coding — how could I benefit from you?") {
-      botReply = `🧭 Our programs are designed for non-IT learners to transition into tech with step-by-step mentorship and practical projects.`;
+      botReply = `💼 We help you with resume building, mock interviews, and placement drives.`;
+    } else {
+      botReply = `🧭 Even without coding background, our step-by-step learning helps you transition into tech.`;
     }
 
     setMessages((prev) => [...prev, { from: "user", text: option }, { from: "bot", text: botReply }]);
@@ -72,29 +77,13 @@ const AIChatBot = () => {
   };
 
   const handleNextQuestion = (option) => {
-    let botReply = "";
-
-    if (option === "View curriculum of your programs") {
-      botReply = `📚 You can view our detailed curriculums on the Courses page — including modules and project outlines.`;
-    } else if (option === "Tell me about the program offerings.") {
-      botReply = `🎓 We offer Full Stack Development, QA Automation, Data Analytics, and Cloud Computing courses.`;
-    } else if (option === "How do you provide job assistance?") {
-      botReply = `🤝 We provide personalized guidance and connect you directly with our hiring partners.`;
-    }
-
-    setMessages((prev) => [...prev, { from: "user", text: option }, { from: "bot", text: botReply }]);
-
-    setTimeout(() => {
-      setMessages((prev) => [
-        ...prev,
-        {
-          from: "bot",
-          text: "📋 Before we proceed, could you please share your details so our team can reach out to you?",
-        },
-      ]);
-      setShowNextQuestions(false);
-      setCollectInfo(true);
-    }, 800);
+    setMessages((prev) => [
+      ...prev,
+      { from: "user", text: option },
+      { from: "bot", text: "📋 Before we proceed, please share your details so our team can reach out to you." },
+    ]);
+    setShowNextQuestions(false);
+    setCollectInfo(true);
   };
 
   const handleInputChange = (e) => {
@@ -108,7 +97,7 @@ const AIChatBot = () => {
       ...prev,
       {
         from: "user",
-        text: `👤 Name: ${userData.name}, ✉️ Email: ${userData.email}, 🎓 Qualification: ${userData.qualification}, 📘 Interested Course: ${userData.course}`,
+        text: `👤 ${userData.name} | ✉️ ${userData.email} | 📘 ${userData.course}`,
       },
     ]);
 
@@ -122,31 +111,77 @@ const AIChatBot = () => {
       if (response.ok) {
         setMessages((prev) => [
           ...prev,
-          { from: "bot", text: "✅ Thank you! Our counselor will reach out to you soon. Would you like to chat with a live assistant?" },
+          {
+            from: "bot",
+            text: "✅ Thank you! Our counselor will reach out to you soon. Would you like to chat with a live assistant now?",
+          },
         ]);
+        setShowLiveChatOption(true);
       } else {
-        setMessages((prev) => [...prev, { from: "bot", text: "⚠️ Oops! Something went wrong. Please try again later." }]);
+        setMessages((prev) => [
+          ...prev,
+          { from: "bot", text: "⚠️ Something went wrong. Please try again later." },
+        ]);
       }
-    } catch (error) {
+    } catch {
       setMessages((prev) => [
         ...prev,
-        { from: "bot", text: "❌ Error connecting to server. Please check your backend connection." },
+        { from: "bot", text: "❌ Server error. Please check your connection." },
       ]);
     }
 
     setCollectInfo(false);
   };
 
+  // 🟢 SOCKET.IO Live Chat integration
+  useEffect(() => {
+    socket.on("chatAccepted", ({ agentName }) => {
+      setMessages((prev) => [
+        ...prev,
+        { from: "bot", text: `🎉 ${agentName} has joined the chat!` },
+      ]);
+      setLiveChatActive(true);
+    });
+
+    socket.on("receiveMessage", (msg) => {
+      setMessages((prev) => [...prev, msg]);
+    });
+
+    return () => {
+      socket.off("chatAccepted");
+      socket.off("receiveMessage");
+    };
+  }, []);
+
+  const initiateLiveChat = () => {
+    const id = Date.now().toString();
+    setChatId(id);
+    socket.emit("requestLiveChat", userData);
+    setMessages((prev) => [
+      ...prev,
+      { from: "bot", text: "🔔 Request sent to our agents. Please wait for someone to accept..." },
+    ]);
+    setShowLiveChatOption(false);
+  };
+
+  const sendMessage = (e) => {
+    e.preventDefault();
+    if (!newMessage.trim()) return;
+    socket.emit("sendMessage", { chatId, from: "user", text: newMessage });
+    setMessages((prev) => [...prev, { from: "user", text: newMessage }]);
+    setNewMessage("");
+  };
+
   return (
     <>
-      {/* Chat toggle button */}
+      {/* Floating Chat Icon */}
       <motion.button
         className="position-fixed bottom-0 end-0 m-4 rounded-circle shadow-lg"
         style={{
           width: "60px",
           height: "60px",
-          background: "linear-gradient(135deg, #1f4b7aff, #1d6c81ff)",
           border: "none",
+          background: "linear-gradient(135deg, #1f4b7aff, #1d6c81ff)",
           color: "white",
           fontSize: "24px",
           zIndex: 10000,
@@ -155,10 +190,14 @@ const AIChatBot = () => {
         whileTap={{ scale: 0.9 }}
         onClick={() => setIsOpen(!isOpen)}
       >
-         <img src='/assets/Chatbot.png' alt="Edzaro AI" style={{ width: "100%", height: "100%", borderRadius: "50%", objectFit: "cover" }} />
+        <img
+          src="/assets/Chatbot.png"
+          alt="Edzaro AI"
+          style={{ width: "100%", height: "100%", borderRadius: "50%" }}
+        />
       </motion.button>
 
-      {/* Chatbot window */}
+      {/* Chat Window */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -176,6 +215,7 @@ const AIChatBot = () => {
               background: "linear-gradient(180deg, #f0f7ff, #ffffff)",
             }}
           >
+            {/* Header */}
             <div
               className="card-header text-white d-flex align-items-center justify-content-between"
               style={{
@@ -184,35 +224,25 @@ const AIChatBot = () => {
               }}
             >
               Edzaro HelpChat
-              <button
-                className="btn btn-sm btn-light"
-                onClick={() => setIsOpen(false)}
-              >
+              <button className="btn btn-sm btn-light" onClick={() => setIsOpen(false)}>
                 ✖
               </button>
             </div>
 
-            <div
-              className="card-body overflow-auto p-3"
-              style={{ height: "420px", background: "rgba(255,255,255,0.85)" }}
-            >
-              {messages.map((msg, index) => (
+            {/* Messages Area */}
+            <div className="card-body overflow-auto p-3" style={{ height: "420px" }}>
+              {messages.map((msg, i) => (
                 <motion.div
-                  key={index}
+                  key={i}
                   className={`d-flex mb-2 ${
-                    msg.from === "bot"
-                      ? "justify-content-start"
-                      : "justify-content-end"
+                    msg.from === "bot" ? "justify-content-start" : "justify-content-end"
                   }`}
                   initial={{ opacity: 0, x: msg.from === "bot" ? -20 : 20 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.3 }}
                 >
                   <div
                     className={`p-2 rounded-3 shadow-sm ${
-                      msg.from === "bot"
-                        ? "bg-white text-dark border"
-                        : "bg-primary text-white"
+                      msg.from === "bot" ? "bg-white text-dark border" : "bg-primary text-white"
                     }`}
                     style={{ maxWidth: "75%" }}
                   >
@@ -222,7 +252,7 @@ const AIChatBot = () => {
               ))}
               <div ref={chatEndRef}></div>
 
-              {/* Initial Options */}
+              {/* Initial options */}
               {showInitialOptions && (
                 <div className="d-flex flex-column mt-3">
                   {[
@@ -231,18 +261,14 @@ const AIChatBot = () => {
                     "I am looking to up-skill",
                     "I am only exploring",
                   ].map((opt, i) => (
-                    <button
-                      key={i}
-                      className="btn btn-outline-primary mb-2"
-                      onClick={() => handleInitialOption(opt)}
-                    >
+                    <button key={i} className="btn btn-outline-primary mb-2" onClick={() => handleInitialOption(opt)}>
                       {opt}
                     </button>
                   ))}
                 </div>
               )}
 
-              {/* Follow-ups */}
+              {/* Follow ups */}
               {showFollowUps && (
                 <div className="d-flex flex-column mt-3">
                   {[
@@ -250,18 +276,14 @@ const AIChatBot = () => {
                     "How do you provide job assistance?",
                     "I don't know coding — how could I benefit from you?",
                   ].map((opt, i) => (
-                    <button
-                      key={i}
-                      className="btn btn-outline-primary mb-2"
-                      onClick={() => handleFollowUp(opt)}
-                    >
+                    <button key={i} className="btn btn-outline-primary mb-2" onClick={() => handleFollowUp(opt)}>
                       {opt}
                     </button>
                   ))}
                 </div>
               )}
 
-              {/* Next Questions */}
+              {/* Next question */}
               {showNextQuestions && (
                 <div className="mt-3">
                   <p className="fw-bold text-secondary">What do you wish to know more?</p>
@@ -270,11 +292,7 @@ const AIChatBot = () => {
                     "Tell me about the program offerings.",
                     "How do you provide job assistance?",
                   ].map((opt, i) => (
-                    <button
-                      key={i}
-                      className="btn btn-outline-primary mb-2"
-                      onClick={() => handleNextQuestion(opt)}
-                    >
+                    <button key={i} className="btn btn-outline-primary mb-2" onClick={() => handleNextQuestion(opt)}>
                       {opt}
                     </button>
                   ))}
@@ -283,33 +301,49 @@ const AIChatBot = () => {
 
               {/* Form */}
               {collectInfo && (
-                <motion.form
-                  onSubmit={handleSubmit}
-                  className="mt-3"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                >
-                  {["name", "email", "phone", "qualification", "course"].map(
-                    (field, i) => (
-                      <div className="mb-2" key={i}>
-                        <input
-                          type={field === "email" ? "email" : "text"}
-                          name={field}
-                          placeholder={
-                            field.charAt(0).toUpperCase() + field.slice(1)
-                          }
-                          className="form-control"
-                          value={userData[field]}
-                          onChange={handleInputChange}
-                          required
-                        />
-                      </div>
-                    )
-                  )}
+                <motion.form onSubmit={handleSubmit} className="mt-3" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+                  {["name", "email", "phone", "qualification", "course"].map((field, i) => (
+                    <div className="mb-2" key={i}>
+                      <input
+                        type={field === "email" ? "email" : "text"}
+                        name={field}
+                        placeholder={field.charAt(0).toUpperCase() + field.slice(1)}
+                        className="form-control"
+                        value={userData[field]}
+                        onChange={handleInputChange}
+                        required
+                      />
+                    </div>
+                  ))}
                   <button className="btn btn-primary w-100" type="submit">
                     Submit
                   </button>
                 </motion.form>
+              )}
+
+              {/* Live Chat Offer */}
+              {showLiveChatOption && (
+                <div className="mt-3 text-center">
+                  <button className="btn btn-success me-2" onClick={initiateLiveChat}>
+                    Yes, connect me
+                  </button>
+                  <button className="btn btn-outline-secondary" onClick={() => setShowLiveChatOption(false)}>
+                    No, thanks
+                  </button>
+                </div>
+              )}
+
+              {/* Live Chat Active */}
+              {liveChatActive && (
+                <form onSubmit={sendMessage} className="d-flex mt-3">
+                  <input
+                    className="form-control me-2"
+                    value={newMessage}
+                    onChange={(e) => setNewMessage(e.target.value)}
+                    placeholder="Type a message..."
+                  />
+                  <button className="btn btn-primary">Send</button>
+                </form>
               )}
             </div>
           </motion.div>
