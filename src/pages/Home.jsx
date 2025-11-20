@@ -429,7 +429,7 @@ const Home = () => {
 
 <div className="d-flex w-full max-w-screen-xl mx-auto  p-8 bg-white shadow-lg rounded-2xl gap-10">
   {/* LEFT SIDE CONTENT - 75% of the screen */}
-  <div className="w-3/4 p-5">
+  {/* <div className="w-3/4 p-5">
     <h3 className="text-2xl md:text-3xl font-semibold text-purple-700 mb-6">
       Customized L&D Solutions for Corporates
     </h3>
@@ -456,16 +456,16 @@ const Home = () => {
         </div>
       ))}
     </div>
-  </div>
+  </div> */}
 
   {/* RIGHT SIDE IMAGE - 25% of the screen */}
-  <div className="w-1/4 flex justify-center">
+  {/* <div className="w-1/4 flex justify-center">
     <img
       src="/assets/corporate.png"
       alt="Corporate Team"
       className="rounded-2xl shadow-md w-64 h-48 object-cover"
     />
-  </div>
+  </div> */}
 </div>
       {/* Testimonials */}
        <section className="testimonial-section py-5 position-relative overflow-hidden">
