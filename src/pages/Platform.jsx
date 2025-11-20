@@ -62,10 +62,14 @@ const Platform = () => {
           <Row className="mb-5">
             <Col md={10} className="mx-auto text-center text-black">
               <h1 className="mb-4">Our Learning Platform</h1>
-              <p className="lead">
-                Experience learning redefined with our cutting-edge platform designed specifically for 
-                software development education. Access courses anytime, anywhere, with features built for success.
-              </p>
+<p className="lead">
+  We deliver a world-class learning experience to our students through our 
+  partnership with <strong>TalentSprint, a part of Accenture</strong>. 
+  This cutting-edge platform is designed specifically for software development 
+  education, offering flexible access to high-quality courses with features 
+  that support every learner’s success.
+</p>
+
             </Col>
           </Row>
 

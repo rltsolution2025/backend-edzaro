@@ -28,6 +28,8 @@ const Footer = () => {
               <li><Link to="/inside-program/cloud-developer" className="text-light text-decoration-none">Cloud Developer Program</Link></li>
               <li><Link to="/refer-friend" className="text-light text-decoration-none">Refer & Earn</Link></li>
               <li><Link to="/hire-edzaro" className="text-light text-decoration-none">Hire from Edzaro</Link></li>
+              {/* <li><Link to="/contact-us" className="text-light text-decoration-none">Contact Us</Link></li> */}
+              <li><Link to="/platform" className="text-light text-decoration-none">Platform</Link></li>
             </ul>
           </Col>
           <Col md={4}>

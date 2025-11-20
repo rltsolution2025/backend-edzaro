@@ -9,7 +9,7 @@ const programData = {
     title: "Cloud Developer Program",
     image: "/assets/Cloud.png",
     overview: "A 9-course track designed to prepare you for a career as a cloud developer in less than one year...",
-    salary: "5 LPA – 15 LPA",
+    salary: "4.5 LPA – 15 LPA",
     quarters: [
       {
         title: "Quarter 1",
@@ -47,7 +47,7 @@ const programData = {
     title: "AI Application Developer Track",
     image: "/assets/AI.png",
     overview: "A program designed to make you an AI-powered app developer, integrating AWS AI services into real-world solutions...",
-    salary: "5 LPA – 15 LPA",
+    salary: "4.5 LPA – 15 LPA",
     quarters: [
       {
         title: "Quarter 1",
