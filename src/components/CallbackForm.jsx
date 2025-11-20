@@ -37,7 +37,7 @@ const CallbackForm = ({ show, handleClose }) => {
             }}
           >
             <img
-              src="assets/Callback.png"
+              src="/assets/Callback.png"
               alt="Request Callback"
               style={{
                 width: "100%",
