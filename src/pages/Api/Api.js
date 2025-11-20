@@ -26,7 +26,7 @@ export const submitReference = async (data) => {
 
 export const submitEnquiry = async (data) => {
     try {
-        const response = await axios.post(`${API_BASE_URL}/enquire`, data); 
+        const response = await axios.post(`${API_BASE_URL}/enquiry`, data); 
         return response.data;
     } catch (error) {
         throw new Error(error.response.data.error || "Error submitting form.");
