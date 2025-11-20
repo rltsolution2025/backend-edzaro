@@ -1,9 +1,11 @@
+import { label } from "framer-motion/client";
 import { useEffect, useState } from "react";
 
 const orgData = [
-  { label: "RL Technologies", children: ["RLT Instrumentations", "Kidzee Kindergarten"] },
-  { label: "RLT Solutions", children: ["Shantini Ketan Matric", "Maharishi Vidhya Mandhir", "RLT Academy Matric"] },
-  { label: "RLT Academy of E-Excellence", children: ["Hotel Management College", "Agriculture College", "RLT Edzaro"] }
+  { label: "RL Technologies", children: ["Industrial Automation", "Industrial Instrumentation precision engineering"] },
+  { label: "RLT Solutions", children: ["Water Management Projects", "Solar Projects", "Industry Automation Projects"] },
+  {label : "RLT Instruments", children: ["Manufacturing, Sales & Service of Analytical Instruments"] },
+  { label: "RLT Academy of E-Excellence", children: ["Shantini Ketan Matri Hr.Sec School","Shantini Ketan CBSE school" , "Maharishi Vidhya Mandhir-CBSE school", "RLT Academy Matric Higher Secondary, School","RLT International Institute of Hotel Management College", "RLT Institute of Agriculture & Horticulture College", "RLT Edzaro"] }
 ];
 
 function AnimatedBranch({ label, children, delay }) {
