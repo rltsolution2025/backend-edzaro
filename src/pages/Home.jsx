@@ -86,6 +86,8 @@ const Home = () => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
+  
+
   return (
     <div>
 

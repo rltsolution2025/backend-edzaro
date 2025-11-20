@@ -8,7 +8,7 @@ import './Hire.css';
 const HireEdzaro = () => {
   const [formData, setFormData] = useState({
     companyName: "",
-    contactPerson: "",
+    yourName: "",
     email: "",
     roles: ""
   });

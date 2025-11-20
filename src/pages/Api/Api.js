@@ -32,3 +32,12 @@ export const submitEnquiry = async (data) => {
         throw new Error(error.response.data.error || "Error submitting form.");
     }   
 };
+
+export const SubmitEnquiryForm = async (data) => {
+    try {
+        const response = await axios.post(`${API_BASE_URL}/enquire`, data);
+        return response.data;
+    } catch (error) {
+        throw new Error(error.response.data.error || "Error submitting form.");
+    }
+};
