@@ -22,12 +22,23 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // ✅ MongoDB connection
-mongoose.connect("mongodb://127.0.0.1:27017/trialFormDB", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
-.then(() => console.log("✅ MongoDB connected"))
+// mongoose.connect("mongodb://127.0.0.1:27017/trialFormDB", {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+// })
+// .then(() => console.log("✅ MongoDB connected"))
+// .catch((err) => console.error("❌ MongoDB connection error:", err));
+
+mongoose.connect(
+  "mongodb+srv://socialrltdigital_db_user:g4TjTxnqftkGaWHZ@cluster0.jddseer.mongodb.net/trialFormDB?retryWrites=true&w=majority&appName=Cluster0",
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  }
+)
+.then(() => console.log("✅ MongoDB Atlas connected"))
 .catch((err) => console.error("❌ MongoDB connection error:", err));
+
 
 // ✅ Routes
 app.use("/api", EnquireForm);
