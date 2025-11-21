@@ -14,6 +14,10 @@ const CallbackRoutes = require("./routes/CallbackRoutes");
 const liveChatSocket = require("./Socket.io");
 const http = require("http");
 const { Server } = require("socket.io");
+require("dotenv").config();
+
+const PORT = process.env.PORT || 5000;
+const MONGO_URI = process.env.MONGO_URI;
 
 
 // Initialize app
@@ -30,7 +34,7 @@ app.use(bodyParser.json());
 // .catch((err) => console.error("❌ MongoDB connection error:", err));
 
 mongoose.connect(
-  "mongodb+srv://socialrltdigital_db_user:g4TjTxnqftkGaWHZ@cluster0.jddseer.mongodb.net/trialFormDB?retryWrites=true&w=majority&appName=Cluster0",
+  MONGO_URI,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -70,7 +74,7 @@ liveChatSocket(io);
 
 
 // Start server
-const PORT = 5000;
+
 
 server.listen(PORT, () => {
   console.log(`🚀 Server running on http://localhost:${PORT}`);
