@@ -4,8 +4,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { io } from "socket.io-client";
 
 const SOUND_URL = "/sound.mp3";
-const socket = io("http://localhost:5000"); // 🔹 Ensure port matches backend
-// const socket = io("https://rlt-edzaro.onrender.com");
+// const socket = io("http://localhost:5000"); // 🔹 Ensure port matches backend
+const socket = io("https://rlt-edzaro-1.onrender.com");
 
 const AIChatBot = () => {
   const [messages, setMessages] = useState([
@@ -100,7 +100,7 @@ const AIChatBot = () => {
     ]);
 
     try {
-      const response = await fetch("http://localhost:5000/api/enquiry", {
+      const response = await fetch("https://rlt-edzaro-1.onrender.com/api/enquiry", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(userData),
