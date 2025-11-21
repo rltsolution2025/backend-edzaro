@@ -3,9 +3,9 @@ const router = express.Router();
 const {saveLead, getLeads } = require("../controller/leadController");
 
 // Save lead info
-router.post("/", saveLead);
+router.post("/lead", saveLead);
 
 // Optional: Get all leads (for admin use)
-router.get("/", getLeads);
+router.get("/lead", getLeads);
 
 module.exports = router;

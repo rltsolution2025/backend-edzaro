@@ -3,7 +3,7 @@ const router = express.Router();
 const Enquire = require("../models/Enquire");
 
 // POST /api/enquire
-router.post('/', async(req, res) => {
+router.post('/enquire', async(req, res) => {
     try {
         const { name, email, phone, agree } = req.body; 
         if (!name || !email || !phone) {

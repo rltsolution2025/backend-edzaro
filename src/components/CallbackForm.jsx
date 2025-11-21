@@ -1,7 +1,30 @@
 import React from "react";
+import { useState } from "react";
 import { Button, Modal, Form, Row, Col } from "react-bootstrap";
+import {CallbackRequest} from "../pages/Api/Api";
 
 const CallbackForm = ({ show, handleClose }) => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+  });
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await CallbackRequest(formData);
+      alert("Callback request submitted successfully!");
+      handleClose();
+    } catch (error) {
+      alert("Failed to submit callback request. Please try again.");
+    }
+  };
+
   return (
     <Modal
       show={show}
@@ -67,20 +90,20 @@ const CallbackForm = ({ show, handleClose }) => {
             <Form>
               <Form.Group className="mb-3" controlId="formName">
                 <Form.Label>Name</Form.Label>
-                <Form.Control type="text" placeholder="Enter your name" />
+                <Form.Control type="text" name="name" value={formData.name} onChange={handleChange} placeholder="Enter your name" />
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="formEmail">
                 <Form.Label>Email</Form.Label>
-                <Form.Control type="email" placeholder="Enter your email" />
+                <Form.Control type="email" name="email" value={formData.email} onChange={handleChange} placeholder="Enter your email" />
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="formPhone">
                 <Form.Label>Phone</Form.Label>
-                <Form.Control type="text" placeholder="Enter your phone number" />
+                <Form.Control type="text" name="phone" value={formData.phone} onChange={handleChange} placeholder="Enter your phone number" />
               </Form.Group>
 
-              <Button variant="primary" type="submit" className="w-100 mt-2">
+              <Button variant="primary" type="submit" onClick={handleSubmit} className="w-100 mt-2">
                 Submit
               </Button>
             </Form>

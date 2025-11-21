@@ -10,6 +10,7 @@ const chatRoutes = require("./routes/chatRoutes");
 const leadRoutes = require("./routes/leadRoutes");
 const enquiryRoutes = require("./routes/enquiryRoutes");
 const liveChatRoutes = require("./routes/LiveChatRoutes");
+const CallbackRoutes = require("./routes/CallbackRoutes");
 const liveChatSocket = require("./Socket.io");
 const http = require("http");
 const { Server } = require("socket.io");
@@ -29,14 +30,14 @@ mongoose.connect("mongodb://127.0.0.1:27017/trialFormDB", {
 .catch((err) => console.error("❌ MongoDB connection error:", err));
 
 // ✅ Routes
-app.use("/api/enquire", EnquireForm);
-app.use("/api/hire", HireForm);
-app.use("/api/refer", ReferForm);
-app.use("/api/chat", chatRoutes);
-app.use("/api/lead", leadRoutes);
-app.use("/api/enquiry", enquiryRoutes);
+app.use("/api/", EnquireForm);
+app.use("/api/", HireForm);
+app.use("/api/", ReferForm);
+app.use("/api/", chatRoutes);
+app.use("/api", leadRoutes);
+app.use("/api", enquiryRoutes);
 app.use("/api/livechat", liveChatRoutes);
-
+app.use("/api", CallbackRoutes);
 
 // Default route
 app.get("/", (req, res) => {

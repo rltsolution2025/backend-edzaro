@@ -1,13 +1,11 @@
-// Only changes marked with comments "🔹 Updated"
-
 import React, { useState, useEffect, useRef } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { motion, AnimatePresence } from "framer-motion";
 import { io } from "socket.io-client";
 
 const SOUND_URL = "/sound.mp3";
-// const socket = io("http://localhost:5000"); // 🔹 Ensure port matches backend
-const socket = io("https://rlt-edzaro.onrender.com"); // 🔹 Ensure port matches backend
+const socket = io("http://localhost:5000"); // 🔹 Ensure port matches backend
+// const socket = io("https://rlt-edzaro.onrender.com");
 
 const AIChatBot = () => {
   const [messages, setMessages] = useState([

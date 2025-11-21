@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Enquire = require("../models/Refer");
 
-router.post('/', async(req,res) =>{
+router.post('/refer', async(req,res) =>{
     try{
         const {refereeName, refereeEmail, refereePhone, programInterested, referredBy, status} = req.body;
 

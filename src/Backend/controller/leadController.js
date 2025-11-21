@@ -1,6 +1,3 @@
-// In-memory storage (replace with MongoDB later)
-
-
 let leads = [];
 
 const saveLead = (req, res) => {
