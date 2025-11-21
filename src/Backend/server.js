@@ -30,13 +30,13 @@ mongoose.connect("mongodb://127.0.0.1:27017/trialFormDB", {
 .catch((err) => console.error("❌ MongoDB connection error:", err));
 
 // ✅ Routes
-app.use("/api/", EnquireForm);
-app.use("/api/", HireForm);
-app.use("/api/", ReferForm);
-app.use("/api/", chatRoutes);
+app.use("/api", EnquireForm);
+app.use("/api", HireForm);
+app.use("/api", ReferForm);
+app.use("/api", chatRoutes);
 app.use("/api", leadRoutes);
 app.use("/api", enquiryRoutes);
-app.use("/api/livechat", liveChatRoutes);
+app.use("/api", liveChatRoutes);
 app.use("/api", CallbackRoutes);
 
 // Default route
