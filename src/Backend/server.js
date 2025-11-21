@@ -14,7 +14,9 @@ const CallbackRoutes = require("./routes/CallbackRoutes");
 const liveChatSocket = require("./Socket.io");
 const http = require("http");
 const { Server } = require("socket.io");
-require("dotenv").config();
+const dotenv = require("dotenv");
+
+dotenv.config();
 
 const PORT = process.env.PORT || 5000;
 const MONGO_URI = process.env.MONGO_URI;
